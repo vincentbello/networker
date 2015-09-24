@@ -1,3 +1,11 @@
+.detail {
+  height: 100%; }
+  .detail .detail-empty {
+    position: relative;
+    top: 40%;
+    transform: translateY(-60%);
+    text-align: center; }
+
 .header {
   height: 50px;
   width: 100%;
@@ -31,67 +39,47 @@
       padding: 0 10px; }
 
 .meetup-list {
+  float: left;
   width: 300px;
   height: 100%;
   border-right: 1px solid #bbb;
-  background-color: #e2f4ff; }
+  background-color: #f2f2f2; }
   .meetup-list .meetup-list-header {
     padding: 10px 0;
     margin: 0;
     text-align: center;
     font-size: 2rem;
     text-transform: uppercase;
-    font-weight: 500; }
+    font-weight: 500;
+    border-bottom: 1px solid #bbb; }
+    .meetup-list .meetup-list-header .fa-angle-down {
+      float: right;
+      position: relative;
+      right: 5px;
+      top: 3px;
+      font-weight: 600; }
 
 .meetup-list-content .meetup {
   border-bottom: 1px solid #bbb;
   padding: 15px 10px;
   background-color: #fff; }
-  .meetup-list-content .meetup:first-of-type {
-    border-top: 1px solid #bbb; }
+  .meetup-list-content .meetup .meetup-link {
+    color: #222;
+    text-decoration: none; }
+    .meetup-list-content .meetup .meetup-link .meetup-list-name {
+      font-size: 1.9rem;
+      margin-bottom: 0; }
+    .meetup-list-content .meetup .meetup-link .meetup-list-caption {
+      font-size: 1.4rem;
+      color: #777; }
+    .meetup-list-content .meetup .meetup-link.selected .meetup-list-name {
+      font-weight: 600; }
   .meetup-list-content .meetup:hover {
     background-color: #f1f1f1; }
-  .meetup-list-content .meetup h5 {
-    font-size: 1.9rem;
-    margin-bottom: 0; }
-  .meetup-list-content .meetup div {
-    font-size: 1.4rem;
-    color: #777; }
 
-@-webkit-keyframes rotating {
-  from {
-    -ms-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg); }
-  to {
-    -ms-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+.spinner {
+  text-align: center;
+  margin-top: 20px; }
 
-@keyframes rotating {
-  from {
-    -ms-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg); }
-  to {
-    -ms-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg); } }
-
-.spinner-animate {
-  -webkit-animation: rotating 1s linear infinite;
-  -moz-animation: rotating 1s linear infinite;
-  -ms-animation: rotating 1s linear infinite;
-  -o-animation: rotating 1s linear infinite;
-  animation: rotating 1s linear infinite; }
-
-.black {
-  color: black; }
+i.fa {
+  margin-right: 3px; }

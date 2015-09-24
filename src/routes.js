@@ -4,11 +4,13 @@ var React = require('react'),
     Router = ReactRouter.Router,
     Route = ReactRouter.Route;
 
-var Main = require('./components/main');
+var Main = require('./components/main'),
+    MeetupDetail = require('./components/meetup-detail');
 
 module.exports = (
   <Router history={new HashHistory}>
     <Route path="/" component={Main}>
+      <Route path="meetups/:meetupId" component={MeetupDetail}/>
     </Route>
   </Router>
 );

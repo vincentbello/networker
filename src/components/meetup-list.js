@@ -5,8 +5,7 @@ var React = require('react'),
     ReactRouter = require('react-router'),
     Link = ReactRouter.Link,
     Meetup = require('./meetup'),
-    Spinner = require('./spinner'),
-    count = 0;
+    Spinner = require('./spinner');
 
 module.exports = React.createClass({
 
@@ -37,7 +36,10 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div className="meetup-list">
-        <h4 className="meetup-list-header">Meetups</h4>
+        <h4 className="meetup-list-header">
+          <i className="fa fa-calendar"></i>  Meetups
+          <i className="fa fa-angle-down"></i>
+        </h4>
         <div className="meetup-list-content">
           {this.state.loaded ? this._renderMeetups() : <Spinner />}
         </div>

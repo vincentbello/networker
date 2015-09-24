@@ -1,8 +1,9 @@
 .meetup-list {
+  float: left;
   width: 300px;
   height: 100%;
   border-right: 1px solid #bbb;
-  background-color: #e2f4ff;
+  background-color: #f2f2f2;
 
   .meetup-list-header {
     padding: 10px 0;
@@ -11,6 +12,15 @@
     font-size: 2rem;
     text-transform: uppercase;
     font-weight: 500;
+    border-bottom: 1px solid #bbb;
+
+    .fa-angle-down {
+      float: right;
+      position: relative;
+      right: 5px;
+      top: 3px;
+      font-weight: 600;
+    }
   }
 }
 
@@ -21,22 +31,29 @@
     padding: 15px 10px;
     background-color: #fff;
 
-    &:first-of-type {
-      border-top: 1px solid #bbb;
+    .meetup-link {
+      color: #222;
+      text-decoration: none;
+
+      .meetup-list-name {
+        font-size: 1.9rem;
+        margin-bottom: 0;
+      }
+
+      .meetup-list-caption {
+        font-size: 1.4rem;
+        color: #777;
+      }
+
+      &.selected {
+        .meetup-list-name {
+          font-weight: 600;
+        }
+      }
     }
 
     &:hover {
       background-color: #f1f1f1;
-    }
-
-    h5 {
-      font-size: 1.9rem;
-      margin-bottom: 0;
-    }
-
-    div {
-      font-size: 1.4rem;
-      color: #777;
     }
   }
 }
