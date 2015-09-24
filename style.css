@@ -1,2 +1,97 @@
+.header {
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid #bbb; }
+  .header h4 {
+    font-size: 2.3rem;
+    padding: 1rem;
+    margin: 0;
+    text-align: center; }
+  .header .nav-component {
+    float: left;
+    padding: 0 10px; }
+  .header .logo {
+    width: 300px;
+    text-align: center;
+    float: left; }
+  .header .search {
+    float: left; }
+    .header .search .input[type="text"] {
+      height: 40px;
+      width: 300px;
+      margin-top: 5px;
+      padding: 3px 15px 5px;
+      border-radius: 20px; }
+  .header .nav-list {
+    float: right;
+    list-style-type: none; }
+    .header .nav-list li {
+      display: inline;
+      padding: 0 10px; }
+
+.meetup-list {
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid #bbb;
+  background-color: #e2f4ff; }
+  .meetup-list .meetup-list-header {
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 500; }
+
+.meetup-list-content .meetup {
+  border-bottom: 1px solid #bbb;
+  padding: 15px 10px;
+  background-color: #fff; }
+  .meetup-list-content .meetup:first-of-type {
+    border-top: 1px solid #bbb; }
+  .meetup-list-content .meetup:hover {
+    background-color: #f1f1f1; }
+  .meetup-list-content .meetup h5 {
+    font-size: 1.9rem;
+    margin-bottom: 0; }
+  .meetup-list-content .meetup div {
+    font-size: 1.4rem;
+    color: #777; }
+
+@-webkit-keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+.spinner-animate {
+  -webkit-animation: rotating 1s linear infinite;
+  -moz-animation: rotating 1s linear infinite;
+  -ms-animation: rotating 1s linear infinite;
+  -o-animation: rotating 1s linear infinite;
+  animation: rotating 1s linear infinite; }
+
 .black {
   color: black; }

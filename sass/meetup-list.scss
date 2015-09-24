@@ -1,0 +1,42 @@
+.meetup-list {
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid #bbb;
+  background-color: #e2f4ff;
+
+  .meetup-list-header {
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}
+
+.meetup-list-content {
+
+  .meetup {
+    border-bottom: 1px solid #bbb;
+    padding: 15px 10px;
+    background-color: #fff;
+
+    &:first-of-type {
+      border-top: 1px solid #bbb;
+    }
+
+    &:hover {
+      background-color: #f1f1f1;
+    }
+
+    h5 {
+      font-size: 1.9rem;
+      margin-bottom: 0;
+    }
+
+    div {
+      font-size: 1.4rem;
+      color: #777;
+    }
+  }
+}
