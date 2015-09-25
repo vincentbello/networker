@@ -3,8 +3,8 @@ var Reflux = require('reflux'),
     Actions = require('../actions'),
     firebaseUrl = require('../utils/constants').FIREBASE_URL;
 
-var baseRef = new Firebase(firebaseUrl);
-var meetupsRef = baseRef.child('events');
+var baseRef = new Firebase(firebaseUrl),
+    meetupsRef = baseRef.child('events');
 
 var data = {
   meetups: [],

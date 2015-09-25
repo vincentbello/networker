@@ -1,5 +1,11 @@
 var Reflux = require('reflux');
 
 module.exports = Reflux.createActions([
-  'watchMeetups'
+  'watchMeetups',
+  'watchMeetup',
+  'deleteMeetup',
+
+  // modal
+  'showModal',
+  'hideModal'
 ]);
