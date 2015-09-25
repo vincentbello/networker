@@ -1,6 +1,6 @@
 var Reflux = require('reflux'),
     Firebase = require('firebase'),
-    Actions = require('actions'),
+    Actions = require('../actions'),
     firebaseUrl = require('../utils/constants').FIREBASE_URL;
 
 var baseRef = new Firebase(firebaseUrl),
@@ -15,9 +15,15 @@ module.exports = Reflux.createStore({
   listenables: [Actions],
 
   watchMeetup: function(meetupId) {
-    meetupsRef.
+    meetupsRef
         .child(meetupId)
         .on('value', this._updateMeetup.bind(this));
+  },
+
+  stopWatchMeetup: function(meetupId) {
+    meetupsRef
+        .child(meetupId)
+        .off();
   },
 
   _updateMeetup: function(meetupData) {

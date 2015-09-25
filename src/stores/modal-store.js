@@ -1,5 +1,5 @@
 var Reflux = require('reflux'),
-    Actions = require('actions');
+    Actions = require('../actions');
 
 var data = {
   type: false

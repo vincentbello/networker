@@ -52,6 +52,11 @@
     text-transform: uppercase;
     font-weight: 500;
     border-bottom: 1px solid #bbb; }
+    .meetup-list .meetup-list-header .fa-plus-square-o {
+      float: left;
+      position: relative;
+      left: 10px;
+      top: 5px; }
     .meetup-list .meetup-list-header .fa-angle-down {
       float: right;
       position: relative;

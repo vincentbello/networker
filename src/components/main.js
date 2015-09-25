@@ -1,4 +1,5 @@
 var React = require('react'),
+    Reflux = require('reflux'),
     Header = require('./header'),
     MeetupList = require('./meetup-list'),
     EmptyDetail = require('./empty-detail'),
@@ -59,7 +60,7 @@ module.exports = React.createClass({
       return;
     }
 
-    var modalContent = ();
+    var modalContent;
 
     switch (this.state.modal.type) {
       case 'addMeetup':
