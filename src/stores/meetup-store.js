@@ -39,6 +39,10 @@ module.exports = Reflux.createStore({
 
   getData: function() {
     return data;
+  },
+
+  addMeetup: function(newMeetup) {
+    debugger;
   }
 
 });

@@ -19,7 +19,7 @@ module.exports = Reflux.createStore({
     this.trigger(data);
   },
 
-  getDefaultData: function() {
+  getData: function() {
     return data;
   }
 

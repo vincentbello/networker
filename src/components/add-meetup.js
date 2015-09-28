@@ -8,7 +8,7 @@ module.exports = React.createClass({
     e.preventDefault();
 
     this.setState({
-      submitted: true
+      saved: true
     });
 
     var newMeetup = {
@@ -22,10 +22,34 @@ module.exports = React.createClass({
     Actions.addMeetup(newMeetup);
   },
 
+  _handleNameChange: function(e) {
+    this.setState({
+      name: e.currentTarget.value
+    });
+  },
+
+  _handleLocationChange: function(e) {
+    this.setState({
+      location: e.currentTarget.value
+    });
+  },
+
+  _handleWebsiteChange: function(e) {
+    this.setState({
+      website: e.currentTarget.value
+    });
+  },
+
+  _handleNotesChange: function(e) {
+    this.setState({
+      notes: e.currentTarget.value
+    });
+  },
+
   // TODO: Get a JavaScript date picker
   getInitialState: function() {
     return {
-      submitted: false,
+      saved: false,
       name: '',
       date: '',
       location: '',
@@ -38,7 +62,7 @@ module.exports = React.createClass({
     return (
       <div className="add-meetup">
         <h2>Add Meetup</h2>
-        {this._renderForm()}
+          {this._renderForm()}
       </div>
     );
   },
@@ -55,7 +79,7 @@ module.exports = React.createClass({
           className="add-form-input"
           id="add-meetup-name"
           value={this.state.name}
-          onChange={ function(e) { this.setState(name: e.target.value) } }
+          onChange={ this._handleNameChange }
         />
         <label htmlFor="add-meetup-date">Date</label>
         <input
@@ -63,7 +87,7 @@ module.exports = React.createClass({
           className="add-form-input"
           id="add-meetup-date"
           value={this.state.date}
-          onChange={ function(e) { this.setState(date: e.target.value) } }
+          onChange={ this._handleDateChange }
         />
         <label htmlFor="add-meetup-location">Location</label>
         <input
@@ -71,7 +95,7 @@ module.exports = React.createClass({
           className="add-form-input"
           id="add-meetup-location"
           value={this.state.location}
-          onChange={ function(e) { this.setState(location: e.target.value) } }
+          onChange={ this._handleLocationChange }
         />
         <label htmlFor="add-meetup-website">Website</label>
         <input
@@ -79,19 +103,19 @@ module.exports = React.createClass({
           className="add-form-input"
           id="add-meetup-website"
           value={this.state.website}
-          onChange={ function(e) { this.setState(website: e.target.value) } }
+          onChange={ this._handleWebsiteChange }
         />
         <label htmlFor="add-meetup-notes">Notes</label>
         <textarea
           className="add-form-input"
           id="add-meetup-notes"
           value={this.state.notes}
-          onChange={ function(e) { this.setState(notes: e.target.value) } }
+          onChange={ this._handleNotesChange }
         />
         <button
           type="submit"
-          className="button button-primary" disabled={this.state.submitted}>
-          { submitted ? <Spinner text='Adding...' /> : Submit}
+          className="button button-primary" disabled={this.state.saved}>
+          { this.state.saved ? <Spinner text='Adding...' /> : 'Save'}
         </button>
       </form>
     );

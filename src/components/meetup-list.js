@@ -1,6 +1,7 @@
 var React = require('react'),
     Reflux = require('reflux'),
     MeetupStore = require('../stores/meetup-store'),
+    ModalStore = require('../stores/modal-store'),
     Actions = require('../actions'),
     ReactRouter = require('react-router'),
     Link = ReactRouter.Link,
@@ -12,6 +13,10 @@ module.exports = React.createClass({
   mixins: [
     Reflux.listenTo(MeetupStore, 'onChange')
   ],
+
+  _addMeetup: function(e) {
+    Actions.showModal('addMeetup');
+  },
 
   onChange: function(dataObj) {
     this.setState({
@@ -37,7 +42,11 @@ module.exports = React.createClass({
     return (
       <div className="meetup-list">
         <h4 className="meetup-list-header">
-          <i className="fa fa-plus-square-o"></i>
+          <a href="#">
+            <i className="fa fa-plus-square-o"
+              onClick={ this._addMeetup }>
+            </i>
+          </a>
           <i className="fa fa-calendar"></i>  Meetups
           <i className="fa fa-angle-down"></i>
         </h4>

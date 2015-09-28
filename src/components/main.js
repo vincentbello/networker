@@ -1,7 +1,9 @@
 var React = require('react'),
     Reflux = require('reflux'),
     Header = require('./header'),
+    Modal = require('./modal'),
     MeetupList = require('./meetup-list'),
+    AddMeetup = require('./add-meetup'),
     EmptyDetail = require('./empty-detail'),
     ModalStore = require('../stores/modal-store');
 
@@ -10,16 +12,17 @@ var React = require('react'),
 module.exports = React.createClass({
 
   mixins: [
-    Reflux.listenTo(ModalStore), 'onModalUpdate'
+    Reflux.listenTo(ModalStore, 'onModalUpdate')
   ],
 
   getInitialState: function() {
     return {
-      modal: ModalStore.getDefaultData()
+      modal: ModalStore.getData()
     }
   },
 
   onModalUpdate: function(modalData) {
+    console.log('updating modal');
     this.setState({
       modal: modalData
     })
@@ -66,7 +69,7 @@ module.exports = React.createClass({
       case 'addMeetup':
         modalContent = (<AddMeetup />);
       case 'addConnection':
-        modalContent = (<NewConnection />);
+        //modalContent = (<NewConnection />);
     }
 
     return (
