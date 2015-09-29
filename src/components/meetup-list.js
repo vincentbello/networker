@@ -42,10 +42,8 @@ module.exports = React.createClass({
     return (
       <div className="meetup-list">
         <h4 className="meetup-list-header">
-          <a href="#">
-            <i className="fa fa-plus-square-o"
-              onClick={ this._addMeetup }>
-            </i>
+          <a onClick={ this._addMeetup }>
+            <i className="fa fa-plus-square-o"></i>
           </a>
           <i className="fa fa-calendar"></i>  Meetups
           <i className="fa fa-angle-down"></i>

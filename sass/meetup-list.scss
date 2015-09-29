@@ -52,9 +52,21 @@
         color: #777;
       }
 
+      .fa-angle-right {
+        opacity: 0;
+        float: right;
+        position: relative;
+        bottom: 35px;
+        transition: opacity 0.2s ease-in;
+      }
+
       &.selected {
         .meetup-list-name {
           font-weight: 600;
+        }
+
+        .fa-angle-right {
+          opacity: 1;
         }
       }
     }

@@ -1,6 +1,7 @@
 var React = require('react'),
     Reflux = require('reflux'),
     Actions = require('../actions'),
+    Navigation = require('react-router').Navigation,
     MeetupDetailStore = require('../stores/meetup-detail-store');
 
 var Spinner = require('./spinner');
@@ -8,14 +9,32 @@ var Spinner = require('./spinner');
 module.exports = React.createClass({
 
   mixins: [
+    Navigation,
     Reflux.listenTo(MeetupDetailStore, 'onUpdate')
   ],
+
+  _removeMeetup: function(e) {
+    this.setState({
+      removing: true
+    });
+  },
+
+  _confirmRemoveMeetup: function(e) {
+    Actions.removeMeetup(this.state.meetup.id);
+  },
+
+  _cancelRemove: function(e) {
+    this.setState({
+      removing: false
+    });
+  },
 
   getInitialState: function() {
     return {
       loading: true,
       meetup: null,
-      editing: false
+      editing: false,
+      removing: false
     };
   },
 
@@ -38,8 +57,9 @@ module.exports = React.createClass({
   // TODO: cleanup on componentDidUnmount, routerWillLeave
 
   onUpdate: function(meetupData) {
+    console.log('onUpdate');
     if (!meetupData.meetup) {
-      console.log('error, wrong meetup!');
+      this.transitionTo('/');
       return;
     }
 
@@ -77,6 +97,7 @@ module.exports = React.createClass({
             <h5>Notes</h5>
             {meetup.notes}
           </div>
+          {this._renderRemove()}
         </div>
       );
     }
@@ -86,8 +107,26 @@ module.exports = React.createClass({
         {inner}
       </div>
     );
+  },
 
+  _renderRemove: function() {
+    var confirm = '';
 
+    if (this.state.removing) {
+      confirm = (
+        <span>
+          <a onClick={this._confirmRemoveMeetup}>Remove</a> - <a onClick={this._cancelRemove}>Cancel</a>
+        </span>
+      );
+    }
 
+    return (
+      <p className="remove-meetup">
+        <a onClick={this._removeMeetup}>
+          <i className="fa fa-trash-o"></i> Remove Meetup
+        </a>
+        {confirm}
+      </p>
+    );
   }
 });

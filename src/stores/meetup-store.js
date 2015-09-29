@@ -42,7 +42,22 @@ module.exports = Reflux.createStore({
   },
 
   addMeetup: function(newMeetup) {
-    debugger;
-  }
+    meetupsRef.push(newMeetup, function(err) {
+      if (err) {
+        console.log('error: ' + err);
+        return;
+      }
+      Actions.hideModal();
+    });
+  },
+
+  removeMeetup: function(meetupId) {
+    meetupsRef.child(meetupId).remove(function(err) {
+      if (err) {
+        console.log('error: ' + err);
+        return;
+      }
+    })
+  },
 
 });

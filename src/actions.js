@@ -6,7 +6,7 @@ module.exports = Reflux.createActions([
   'watchMeetup',
   'stopWatchMeetup',
   'addMeetup',
-  'deleteMeetup',
+  'removeMeetup',
 
   // modal
   'showModal',

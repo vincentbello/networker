@@ -14,7 +14,7 @@ module.exports = React.createClass({
     var newMeetup = {
       name: this.state.name.trim(),
       date: this.state.date,
-      location: this.state.location,
+      address: this.state.address,
       website: this.state.website,
       notes: this.state.notes
     };
@@ -22,15 +22,33 @@ module.exports = React.createClass({
     Actions.addMeetup(newMeetup);
   },
 
+  // _addMeetupCompleted: function(meetupId) {
+  //   // clear form
+  //   this.setState({
+  //     saved: false,
+  //     name: '',
+  //     date: '',
+  //     address: '',
+  //     website: '',
+  //     notes: ''
+  //   });
+  // },
+
   _handleNameChange: function(e) {
     this.setState({
       name: e.currentTarget.value
     });
   },
 
-  _handleLocationChange: function(e) {
+  _handleDateChange: function(e) {
     this.setState({
-      location: e.currentTarget.value
+      date: e.currentTarget.value
+    });
+  },
+
+  _handleAddressChange: function(e) {
+    this.setState({
+      address: e.currentTarget.value
     });
   },
 
@@ -52,10 +70,13 @@ module.exports = React.createClass({
       saved: false,
       name: '',
       date: '',
-      location: '',
+      address: '',
       website: '',
       notes: ''
     };
+  },
+
+  componentWillReceiveProps: function(nextProps) {
   },
 
   render: function() {
@@ -89,13 +110,13 @@ module.exports = React.createClass({
           value={this.state.date}
           onChange={ this._handleDateChange }
         />
-        <label htmlFor="add-meetup-location">Location</label>
+        <label htmlFor="add-meetup-address">Address</label>
         <input
           type="text"
           className="add-form-input"
-          id="add-meetup-location"
-          value={this.state.location}
-          onChange={ this._handleLocationChange }
+          id="add-meetup-address"
+          value={this.state.address}
+          onChange={ this._handleAddressChange }
         />
         <label htmlFor="add-meetup-website">Website</label>
         <input

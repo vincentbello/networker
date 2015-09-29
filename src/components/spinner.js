@@ -5,7 +5,7 @@ module.exports = React.createClass({
     return (
       <div className="spinner">
         <i className="fa fa-cog fa-spin fa-lg"></i>
-        Loading Meetups...
+        {this.props.text || 'Loading Meetups...'}
       </div>
     );
   }

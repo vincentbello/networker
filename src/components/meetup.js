@@ -25,6 +25,7 @@ module.exports = React.createClass({
           onClick={this._handleSelect}>
           <h5 className="meetup-list-name">{this.props.meetup.name}</h5>
           <div className="meetup-list-caption">{this.props.meetup.address}</div>
+          <i className="fa fa-lg fa-angle-right"></i>
         </Link>
       </div>
     );

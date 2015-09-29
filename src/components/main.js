@@ -1,5 +1,6 @@
 var React = require('react'),
     Reflux = require('reflux'),
+    Actions = require('../actions'),
     Header = require('./header'),
     Modal = require('./modal'),
     MeetupList = require('./meetup-list'),
@@ -28,12 +29,12 @@ module.exports = React.createClass({
     })
   },
 
-  // hideModal: function(e) {
-  //   if (e) {
-  //     e.preventDefault();
-  //   }
-  //   Actions.hide
-  // }
+  _dismissModal: function(e) {
+    if (e) {
+      e.preventDefault();
+    }
+    Actions.hideModal();
+  },
 
   _detailContent: function() {
     if (this.props.children) {
@@ -73,7 +74,7 @@ module.exports = React.createClass({
     }
 
     return (
-      <Modal>
+      <Modal dismissModal={this._dismissModal}>
         {modalContent}
       </Modal>
     );
