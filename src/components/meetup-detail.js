@@ -4,7 +4,8 @@ var React = require('react'),
     Navigation = require('react-router').Navigation,
     MeetupDetailStore = require('../stores/meetup-detail-store');
 
-var Spinner = require('./spinner');
+var ConnectionList = require('./connection-list'),
+    Spinner = require('./spinner');
 
 module.exports = React.createClass({
 
@@ -33,6 +34,7 @@ module.exports = React.createClass({
     return {
       loading: true,
       meetup: null,
+      connections: [],
       editing: false,
       removing: false
     };
@@ -57,7 +59,6 @@ module.exports = React.createClass({
   // TODO: cleanup on componentDidUnmount, routerWillLeave
 
   onUpdate: function(meetupData) {
-    console.log('onUpdate');
     if (!meetupData.meetup) {
       this.transitionTo('/');
       return;
@@ -90,12 +91,15 @@ module.exports = React.createClass({
       inner = (
         <div className="detail-meetup-info">
           <h3>{this.state.meetup.name}</h3>
-          <p><i className="fa fa-calendar-check-o fa-fw"></i> September 15, 2015</p>
+          <p><i className="fa fa-calendar-check-o fa-fw"></i> {meetup.date}</p>
           <p><i className="fa fa-map-pin fa-fw"></i> {meetup.address}</p>
           <p><i className="fa fa-external-link-square fa-fw"></i> <a href={meetup.website} target="_blank">Event Website</a></p>
           <div className="detail-meetup-desc">
             <h5>Notes</h5>
             {meetup.notes}
+          </div>
+          <div className="meetup-connections">
+            <ConnectionList { ...this.props.params } />
           </div>
           {this._renderRemove()}
         </div>

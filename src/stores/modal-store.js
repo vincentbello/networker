@@ -2,15 +2,19 @@ var Reflux = require('reflux'),
     Actions = require('../actions');
 
 var data = {
-  type: false
+  type: false,
+  args: {}
 };
 
 module.exports = Reflux.createStore({
 
   listenables: [Actions],
 
-  showModal: function(type) {
+  showModal: function(type, args) {
     data.type = type;
+    if (args) {
+      data.args = args;
+    }
     this.trigger(data);
   },
 

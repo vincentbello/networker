@@ -41,14 +41,18 @@ module.exports = Reflux.createStore({
     return data;
   },
 
-  addMeetup: function(newMeetup) {
-    meetupsRef.push(newMeetup, function(err) {
+  addMeetup: function(newMeetup, callback) {
+    var newRef = meetupsRef.push(newMeetup, function(err) {
       if (err) {
         console.log('error: ' + err);
         return;
       }
       Actions.hideModal();
     });
+
+    if (callback) {
+      callback(newRef.key());
+    }
   },
 
   removeMeetup: function(meetupId) {

@@ -70,5 +70,5 @@ module.exports = React.createClass({
         </Meetup>
       );
     });
-  },
+  }
 });

@@ -1,8 +1,13 @@
 var React = require('react'),
     Actions = require('../actions'),
+    Navigation = require('react-router').Navigation,
     Spinner = require('./spinner');
 
 module.exports = React.createClass({
+
+  mixins: [
+    Navigation
+  ],
 
   _handleSubmit: function(e) {
     e.preventDefault();
@@ -19,7 +24,9 @@ module.exports = React.createClass({
       notes: this.state.notes
     };
 
-    Actions.addMeetup(newMeetup);
+    Actions.addMeetup(newMeetup, function(meetupId) {
+      this.transitionTo('meetups/' + meetupId);
+    });
   },
 
   // _addMeetupCompleted: function(meetupId) {
@@ -83,7 +90,7 @@ module.exports = React.createClass({
     return (
       <div className="add-meetup">
         <h2>Add Meetup</h2>
-          {this._renderForm()}
+        {this._renderForm()}
       </div>
     );
   },

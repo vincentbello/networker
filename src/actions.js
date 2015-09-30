@@ -10,5 +10,11 @@ module.exports = Reflux.createActions([
 
   // modal
   'showModal',
-  'hideModal'
+  'hideModal',
+
+  // connections
+  'watchConnections',
+  'watchConnection',
+  'addConnection',
+  'removeConnection'
 ]);

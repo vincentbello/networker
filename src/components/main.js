@@ -5,6 +5,7 @@ var React = require('react'),
     Modal = require('./modal'),
     MeetupList = require('./meetup-list'),
     AddMeetup = require('./add-meetup'),
+    AddConnection = require('./add-connection'),
     EmptyDetail = require('./empty-detail'),
     ModalStore = require('../stores/modal-store');
 
@@ -65,12 +66,13 @@ module.exports = React.createClass({
     }
 
     var modalContent;
-
     switch (this.state.modal.type) {
       case 'addMeetup':
         modalContent = (<AddMeetup />);
+        break;
       case 'addConnection':
-        //modalContent = (<NewConnection />);
+        modalContent = (<AddConnection {...this.state.modal.args} />);
+        break;
     }
 
     return (

@@ -38,6 +38,17 @@
       display: inline;
       padding: 0 10px; }
 
+.image {
+  opacity: 0;
+  transition: opacity 0.2s linear;
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  margin: -21px 0 0 10px;
+  border-radius: 10px; }
+  .image.image-loaded {
+    opacity: 1; }
+
 .meetup-list {
   float: left;
   width: 300px;
@@ -111,9 +122,6 @@
 .spinner {
   text-align: center;
   margin-top: 20px; }
-
-body {
-  overflow: hidden; }
 
 i.fa {
   margin-right: 3px; }
