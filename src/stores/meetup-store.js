@@ -55,6 +55,15 @@ module.exports = Reflux.createStore({
     }
   },
 
+  editMeetup: function(meetupId, newMeetup) {
+    meetupsRef.child(meetupId).update(newMeetup, function(err) {
+      if (err) {
+        console.log('error: ' + err);
+      }
+      Actions.hideModal();
+    })
+  },
+
   removeMeetup: function(meetupId) {
     meetupsRef.child(meetupId).remove(function(err) {
       if (err) {

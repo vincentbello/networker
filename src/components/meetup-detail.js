@@ -2,6 +2,8 @@ var React = require('react'),
     Reflux = require('reflux'),
     Actions = require('../actions'),
     Navigation = require('react-router').Navigation,
+    marked = require('marked'),
+    moment = require('moment'),
     MeetupDetailStore = require('../stores/meetup-detail-store');
 
 var ConnectionList = require('./connection-list'),
@@ -13,6 +15,10 @@ module.exports = React.createClass({
     Navigation,
     Reflux.listenTo(MeetupDetailStore, 'onUpdate')
   ],
+
+  _editMeetup: function(e) {
+    Actions.showModal('addMeetup', { meetup: this.state.meetup });
+  },
 
   _removeMeetup: function(e) {
     this.setState({
@@ -90,13 +96,14 @@ module.exports = React.createClass({
     } else {
       inner = (
         <div className="detail-meetup-info">
-          <h3>{this.state.meetup.name}</h3>
-          <p><i className="fa fa-calendar-check-o fa-fw"></i> {meetup.date}</p>
+          <h3>{meetup.name}</h3>
+          <i className="fa fa-pencil" onClick={this._editMeetup}></i>
+          <p><i className="fa fa-calendar-check-o fa-fw"></i> {moment(meetup.date).format('MMMM D, YYYY')}</p>
           <p><i className="fa fa-map-pin fa-fw"></i> {meetup.address}</p>
           <p><i className="fa fa-external-link-square fa-fw"></i> <a href={meetup.website} target="_blank">Event Website</a></p>
           <div className="detail-meetup-desc">
             <h5>Notes</h5>
-            {meetup.notes}
+            <div dangerouslySetInnerHTML={this._renderNotes()} />
           </div>
           <div className="meetup-connections">
             <ConnectionList { ...this.props.params } />
@@ -111,6 +118,10 @@ module.exports = React.createClass({
         {inner}
       </div>
     );
+  },
+
+  _renderNotes: function() {
+    return { __html: marked(this.state.meetup.notes, { sanitize: true }) };
   },
 
   _renderRemove: function() {

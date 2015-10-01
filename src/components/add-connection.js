@@ -1,6 +1,7 @@
 var React = require('react'),
     Actions = require('../actions'),
     LogoFinder = require('../utils/logo-finder'),
+    Twitter = require('../utils/twitter'),
     Spinner = require('./spinner'),
     Image = require('./image');
 
@@ -15,10 +16,9 @@ module.exports = React.createClass({
 
     var newConnection = {
       name: this.state.name.trim(),
-      image: this.state.photo,
+      photo: this.state.photo,
       company: this.state.company,
       position: this.state.position,
-      meetupId: this.props.meetupId,
       company: {
         name: this.state.company,
         position: this.state.position,
@@ -32,7 +32,12 @@ module.exports = React.createClass({
       }
     };
 
-    Actions.addConnection(newConnection);
+    if (this.props.connection) {
+      Actions.editConnection(this.props.connection.id, newConnection);
+    } else {
+      newConnection.meetupId = this.props.meetupId;
+      Actions.addConnection(newConnection);
+    }
   },
 
   _findLogo: function(e) {
@@ -45,9 +50,13 @@ module.exports = React.createClass({
 
   _findPhoto: function(e) {
     if (this.state.twitter.length) {
-      // this.setState({
-
-      // });
+      var self = this;
+      Twitter.imageFromHandle(this.state.twitter)
+          .then(function(json) {
+            self.setState({
+              photo: json.imageUrl
+            });
+          });
     }
   },
 
@@ -77,7 +86,7 @@ module.exports = React.createClass({
 
   _handleTwitterChange: function(e) {
     this.setState({
-      twitter: e.currentTarget.value.substring(1)
+      twitter: e.currentTarget.value
     })
   },
 
@@ -94,6 +103,24 @@ module.exports = React.createClass({
   },
 
   getInitialState: function() {
+
+    if (this.props.connection) {
+      var connection = this.props.connection;
+
+      return {
+        saved: false,
+        name: connection.name || '',
+        photo: connection.photo || '',
+        company: connection.company.name || '',
+        position: connection.company.position || '',
+        logo: connection.company.logo || '',
+        facebook: connection.contact.facebook || '',
+        twitter: connection.contact.twitter || '',
+        phone: connection.contact.phone || '',
+        email: connection.contact.email || ''
+      };
+    }
+
     return {
       saved: false,
       name: '',
@@ -111,7 +138,9 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div className="add-connection">
-        <h2>Add Connection</h2>
+        <h2>
+          {this.props.connection ? 'Edit' : 'Add'} Connection
+        </h2>
         {this._renderForm()}
       </div>
     );
@@ -128,6 +157,7 @@ module.exports = React.createClass({
           value={this.state.name}
           onChange={ this._handleNameChange }
         />
+        <Image src={this.state.photo} />
         <label htmlFor="add-connection-company">Company</label>
         <input
           type="text"
@@ -160,8 +190,9 @@ module.exports = React.createClass({
           type="text"
           className="add-form-input"
           id="add-connection-twitter"
-          value={'@' + this.state.twitter}
+          value={this.state.twitter}
           onChange={ this._handleTwitterChange }
+          onBlur={ this._findPhoto }
         />
         <label htmlFor="add-connection-phone">Phone</label>
         <input
@@ -178,7 +209,6 @@ module.exports = React.createClass({
           id="add-connection-email"
           value={this.state.email}
           onChange={ this._handleEmailChange }
-          onBlur={ this._findPhoto }
         />
         <button
           type="submit"

@@ -1,8 +1,17 @@
 var React = require('react'),
+    Actions = require('../actions'),
     Router = require('react-router'),
     Link = Router.Link;
 
 module.exports = React.createClass({
+
+  _editConnection: function(e) {
+    Actions.showModal('addConnection', { connection: this.props.connection });
+  },
+
+  _removeConnection: function(e) {
+    Actions.removeConnection(this.props.connection.id);
+  },
 
   render: function() {
     return (
@@ -20,8 +29,8 @@ module.exports = React.createClass({
             Contact info
           </td>
           <td>
-            <i className="fa fa-pencil"></i>
-            <i className="fa fa-times"></i>
+            <i className="fa fa-pencil" onClick={this._editConnection}></i>
+            <i className="fa fa-times" onClick={this._removeConnection}></i>
           </td>
         </tr>
     );

@@ -15,7 +15,7 @@ module.exports = React.createClass({
   ],
 
   _addMeetup: function(e) {
-    Actions.showModal('addMeetup');
+    Actions.showModal('addMeetup', {});
   },
 
   onChange: function(dataObj) {

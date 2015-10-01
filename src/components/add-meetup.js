@@ -1,6 +1,9 @@
 var React = require('react'),
+    Helpers = require('../utils/helpers'),
     Actions = require('../actions'),
     Navigation = require('react-router').Navigation,
+    DayPicker = require('react-day-picker'),
+    moment = require('moment'),
     Spinner = require('./spinner');
 
 module.exports = React.createClass({
@@ -24,9 +27,14 @@ module.exports = React.createClass({
       notes: this.state.notes
     };
 
-    Actions.addMeetup(newMeetup, function(meetupId) {
-      this.transitionTo('meetups/' + meetupId);
-    });
+    // if editing
+    if (this.props.meetup) {
+      Actions.editMeetup(this.props.meetup.id, newMeetup);
+    } else {
+      Actions.addMeetup(newMeetup, function(meetupId) {
+        this.transitionTo('meetups/' + meetupId);
+      });
+    }
   },
 
   // _addMeetupCompleted: function(meetupId) {
@@ -53,6 +61,12 @@ module.exports = React.createClass({
     });
   },
 
+  _handleDayPickerChange: function(e, day) {
+    this.setState({
+      date: day
+    });
+  },
+
   _handleAddressChange: function(e) {
     this.setState({
       address: e.currentTarget.value
@@ -73,13 +87,26 @@ module.exports = React.createClass({
 
   // TODO: Get a JavaScript date picker
   getInitialState: function() {
+
+    // if editing
+    if (this.props.meetup) {
+      return {
+        saved: false,
+        name: this.props.meetup.name || '',
+        date: new Date(this.props.meetup.date) || new Date(),
+        address: this.props.meetup.address || '',
+        website: this.props.meetup.website || '',
+        notes: this.props.meetup.notes || '',
+      }
+    }
+
     return {
       saved: false,
       name: '',
-      date: '',
+      date: new Date(),
       address: '',
       website: '',
-      notes: ''
+      notes: '',
     };
   },
 
@@ -89,7 +116,9 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div className="add-meetup">
-        <h2>Add Meetup</h2>
+        <h2>
+          {this.props.meetup ? 'Edit' : 'Add'} Meetup
+        </h2>
         {this._renderForm()}
       </div>
     );
@@ -97,8 +126,14 @@ module.exports = React.createClass({
 
   _renderForm: function() {
 
+    var selectedDay = this.state.date;
+    var modifiers = {
+      'selected': function(day) {
+        return Helpers.isSameDay(selectedDay, day);
+      }
+    };
+
     // TODO: input classNames should change if invalid on form submit
-    // TODO: add markdown support to notes textarea
     return (
       <form onSubmit={this._handleSubmit} className="add-form">
         <label htmlFor="add-meetup-name">Name</label>
@@ -110,12 +145,17 @@ module.exports = React.createClass({
           onChange={ this._handleNameChange }
         />
         <label htmlFor="add-meetup-date">Date</label>
+        <DayPicker
+          enableOutsideDays={ true }
+          initialMonth={ this.state.date }
+          modifiers={ modifiers }
+          onDayClick={ this._handleDayPickerChange }
+        />
         <input
           type="text"
           className="add-form-input"
           id="add-meetup-date"
-          value={this.state.date}
-          onChange={ this._handleDateChange }
+          value={ moment(this.state.date).format('MMMM D, YYYY') }
         />
         <label htmlFor="add-meetup-address">Address</label>
         <input

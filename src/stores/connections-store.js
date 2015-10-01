@@ -52,14 +52,22 @@ module.exports = Reflux.createStore({
       }
       Actions.hideModal();
     });
-    newRef.setPriority(newConnection.name);
+    newRef.setPriority(newRef.name);
+  },
+
+  editConnection: function(connectionId, newConnection) {
+    connectionsRef.child(connectionId).update(newConnection, function(err) {
+      if (err) {
+        console.log('error: ' + err);
+      }
+      Actions.hideModal();
+    })
   },
 
   removeConnection: function(connectionId) {
-    connectionsRef.child(meetupId).remove(function(err) {
+    connectionsRef.child(connectionId).remove(function(err) {
       if (err) {
         console.log('error: ' + err);
-        return;
       }
     });
   }

@@ -68,7 +68,7 @@ module.exports = React.createClass({
     var modalContent;
     switch (this.state.modal.type) {
       case 'addMeetup':
-        modalContent = (<AddMeetup />);
+        modalContent = (<AddMeetup {...this.state.modal.args} />);
         break;
       case 'addConnection':
         modalContent = (<AddConnection {...this.state.modal.args} />);
