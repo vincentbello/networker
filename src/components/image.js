@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react'),
+    classnames = require('classnames');
 
 module.exports = React.createClass({
 
@@ -24,10 +25,7 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var className = 'image';
-    if (this.state.loaded) {
-      className += ' image-loaded';
-    }
+    var className = classnames('image', this.state.loaded ? 'image-loaded' : null);
 
     return (
       <img
@@ -35,9 +33,5 @@ module.exports = React.createClass({
         onLoad={this._onLoad}
         src={this.props.src} />
     );
-
-
-
-
   }
 });

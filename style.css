@@ -140,11 +140,9 @@
 .image {
   opacity: 0;
   transition: opacity 0.2s linear;
-  position: absolute;
   height: 80px;
   width: 80px;
-  margin: -21px 0 0 10px;
-  border-radius: 10px; }
+  border-radius: 3px; }
   .image.image-loaded {
     opacity: 1; }
 
@@ -216,6 +214,9 @@
     padding: 15px;
     background-color: #fff;
     border-radius: 5px; }
+  .modal-background .image {
+    margin: -21px 0 0 10px;
+    position: absolute; }
 
 .spinner {
   text-align: center;

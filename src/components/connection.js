@@ -1,7 +1,8 @@
 var React = require('react'),
     Actions = require('../actions'),
     Router = require('react-router'),
-    Link = Router.Link;
+    Link = Router.Link,
+    Constants = require('../utils/constants');
 
 module.exports = React.createClass({
 
@@ -17,7 +18,9 @@ module.exports = React.createClass({
     return (
         <tr className="connection">
           <td>
-            {this.props.connection.name}
+            <Link to={'connections/' + this.props.connection.id}>
+              {this.props.connection.name}
+            </Link>
           </td>
           <td>
             {this.props.connection.company.name}
@@ -26,7 +29,7 @@ module.exports = React.createClass({
             {this.props.connection.company.position}
           </td>
           <td>
-            Contact info
+            {this._renderContactInfo()}
           </td>
           <td>
             <i className="fa fa-pencil" onClick={this._editConnection}></i>
@@ -34,5 +37,21 @@ module.exports = React.createClass({
           </td>
         </tr>
     );
+  },
+
+  _renderContactInfo: function() {
+
+    var contact = this.props.connection.contact;
+    return Object.keys(contact).map(function(contactType) {
+      if (contact[contactType] && contact[contactType].length) {
+        return (
+          <i className={'fa fa-' + Constants.contactAttribs[contactType].iconClass}></i>
+        );
+      }
+    });
+
+
+
+
   }
 });

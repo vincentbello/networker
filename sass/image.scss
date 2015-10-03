@@ -2,11 +2,9 @@
   opacity: 0;
   transition: opacity 0.2s linear;
 
-  position: absolute;
   height: 80px;
   width: 80px;
-  margin: -21px 0 0 10px;
-  border-radius: 10px;
+  border-radius: 3px;
 
   &.image-loaded {
     opacity: 1;

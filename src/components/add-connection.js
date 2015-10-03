@@ -26,6 +26,7 @@ module.exports = React.createClass({
       },
       contact: {
         facebook: this.state.facebook,
+        linkedin: this.state.linkedin,
         twitter: this.state.twitter,
         phone: this.state.phone,
         email: this.state.email
@@ -84,6 +85,12 @@ module.exports = React.createClass({
     })
   },
 
+  _handleLinkedinChange: function(e) {
+    this.setState({
+      linkedin: e.currentTarget.value
+    })
+  },
+
   _handleTwitterChange: function(e) {
     this.setState({
       twitter: e.currentTarget.value
@@ -115,6 +122,7 @@ module.exports = React.createClass({
         position: connection.company.position || '',
         logo: connection.company.logo || '',
         facebook: connection.contact.facebook || '',
+        linkedin: connection.contact.linkedin || '',
         twitter: connection.contact.twitter || '',
         phone: connection.contact.phone || '',
         email: connection.contact.email || ''
@@ -129,6 +137,7 @@ module.exports = React.createClass({
       position: '',
       logo: 'img/logo_placeholder.png',
       facebook: '',
+      linkedin: '',
       twitter: '',
       phone: '',
       email: ''
@@ -184,6 +193,14 @@ module.exports = React.createClass({
           id="add-connection-facebook"
           value={this.state.facebook}
           onChange={ this._handleFacebookChange }
+        />
+        <label htmlFor="add-connection-linkedin">LinkedIn</label>
+        <input
+          type="text"
+          className="add-form-input"
+          id="add-connection-linkedin"
+          value={this.state.linkedin}
+          onChange={ this._handleLinkedinChange }
         />
         <label htmlFor="add-connection-twitter">Twitter</label>
         <input
