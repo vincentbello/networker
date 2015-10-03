@@ -129,7 +129,7 @@ module.exports = React.createClass({
               <a href={'mailto:' + contact[contactType]} target="_blank">{contact[contactType]}</a>
             );
             break;
-          case 'facebook':
+          case 'facebook', 'linkedin':
             inner = (
               <a href={contact[contactType]} target="_blank">{contact[contactType]}</a>
             );

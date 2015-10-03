@@ -150,8 +150,8 @@
   float: left;
   width: 300px;
   height: 100%;
-  border-right: 1px solid #bbb;
-  background-color: #f2f2f2; }
+  border-right: 1px solid #e4e2e2;
+  background-color: #f7f7fa; }
   .meetup-list .meetup-list-header {
     padding: 10px 0;
     margin: 0;
@@ -159,7 +159,7 @@
     font-size: 2rem;
     text-transform: uppercase;
     font-weight: 500;
-    border-bottom: 1px solid #bbb; }
+    border-bottom: 1px solid #e4e2e2; }
     .meetup-list .meetup-list-header .fa-plus-square-o {
       float: left;
       position: relative;
@@ -173,7 +173,6 @@
       font-weight: 600; }
 
 .meetup-list-content .meetup {
-  border-bottom: 1px solid #bbb;
   padding: 15px 10px;
   background-color: #fff; }
   .meetup-list-content .meetup .meetup-link {
@@ -181,10 +180,11 @@
     text-decoration: none; }
     .meetup-list-content .meetup .meetup-link .meetup-list-name {
       font-size: 1.9rem;
+      line-height: 2.7rem;
       margin-bottom: 0; }
     .meetup-list-content .meetup .meetup-link .meetup-list-caption {
       font-size: 1.4rem;
-      color: #777; }
+      color: #999; }
     .meetup-list-content .meetup .meetup-link .fa-angle-right {
       opacity: 0;
       float: right;
@@ -196,7 +196,7 @@
     .meetup-list-content .meetup .meetup-link.selected .fa-angle-right {
       opacity: 1; }
   .meetup-list-content .meetup:hover {
-    background-color: #f1f1f1; }
+    background-color: #f7f7fa; }
 
 .modal-background {
   overflow: auto;
