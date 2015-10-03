@@ -1,0 +1,333 @@
+
+.DayPicker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  padding: 1rem 0;
+  user-select: none;
+  outline: none; }
+
+.DayPicker-Month {
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 0;
+  user-select: none;
+  margin: 0 1rem; }
+
+.DayPicker-NavBar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 0 0.5rem; }
+
+.DayPicker-NavButton {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer; }
+
+.DayPicker-NavButton--prev {
+  left: 1rem;
+  background-image: url("assets/prev.svg"); }
+
+.DayPicker-NavButton--next {
+  right: 1rem;
+  background-image: url("assets/next.svg"); }
+
+.DayPicker-Caption {
+  display: table-caption;
+  height: 1.5rem;
+  text-align: center; }
+
+.DayPicker-Weekdays {
+  display: table-header-group; }
+  .DayPicker-Weekdays > div {
+    display: table-row; }
+
+.DayPicker-Weekday {
+  display: table-cell;
+  padding: .5rem;
+  font-size: .875em;
+  text-align: center; }
+
+.DayPicker-Body {
+  display: table-row-group; }
+
+.DayPicker-Week {
+  display: table-row; }
+
+.DayPicker-Day {
+  display: table-cell;
+  padding: .5rem;
+  border: 1px solid #eaecec;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: middle;
+  outline: none; }
+
+.DayPicker--interactionDisabled .DayPicker-Day {
+  cursor: default; }
+
+.DayPicker-Day--today {
+  color: #D0021B;
+  font-weight: 500; }
+
+.DayPicker-Day--disabled {
+  color: #DCE0E0;
+  cursor: default;
+  background-color: #eff1f1; }
+
+.DayPicker-Day--sunday {
+  color: #DCE0E0;
+  background-color: #f7f8f8; }
+
+.DayPicker-Day--outside {
+  cursor: default;
+  color: #DCE0E0; }
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  color: #FFF;
+  background-color: #4A90E2; }
+
+.DayPicker--ar {
+  direction: rtl; }
+
+.detail {
+  height: 100%;
+  overflow-y: scroll;
+  background-color: #f7f7fa; }
+  .detail .detail-empty {
+    position: relative;
+    top: 40%;
+    transform: translateY(-60%);
+    text-align: center; }
+
+.header {
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid #bbb; }
+  .header h4 {
+    font-size: 2.3rem;
+    padding: 1rem;
+    margin: 0;
+    text-align: center; }
+  .header .nav-component {
+    float: left;
+    padding: 0 10px; }
+  .header .logo {
+    width: 300px;
+    text-align: center;
+    float: left; }
+  .header .search {
+    float: left; }
+    .header .search .input[type="text"] {
+      height: 40px;
+      width: 300px;
+      margin-top: 5px;
+      padding: 3px 15px 5px;
+      border-radius: 20px; }
+  .header .nav-list {
+    float: right;
+    list-style-type: none; }
+    .header .nav-list li {
+      display: inline;
+      padding: 0 10px; }
+
+.image {
+  opacity: 0;
+  transition: opacity 0.2s linear;
+  height: 80px;
+  width: 80px;
+  border-radius: 3px; }
+  .image.image-loaded {
+    opacity: 1; }
+
+.detail-meetup .detail-meetup-header {
+  width: 100%;
+  padding: 15px 0 5px;
+  text-align: center;
+  background-color: #fff;
+  border-bottom: 1px solid #e4e2e2; }
+  .detail-meetup .detail-meetup-header h3 {
+    margin-bottom: 10px; }
+  .detail-meetup .detail-meetup-header i.fa-circle {
+    font-size: 4px;
+    position: relative;
+    top: -3px;
+    margin: 0 12px 0 10px; }
+
+.detail-meetup .detail-meetup-event-details {
+  width: 50%;
+  min-width: 300px; }
+  .detail-meetup .detail-meetup-event-details p {
+    margin-bottom: 10px; }
+
+.meetup-list {
+  float: left;
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid #e4e2e2;
+  background-color: #f7f7fa; }
+  .meetup-list .meetup-list-header {
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e4e2e2; }
+    .meetup-list .meetup-list-header .fa-plus-square-o {
+      float: left;
+      position: relative;
+      left: 10px;
+      top: 5px; }
+    .meetup-list .meetup-list-header .fa-angle-down {
+      float: right;
+      position: relative;
+      right: 5px;
+      top: 3px;
+      font-weight: 600; }
+
+.meetup-list-content .meetup {
+  padding: 15px 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #f7f7fa; }
+  .meetup-list-content .meetup .meetup-link {
+    color: #222;
+    text-decoration: none; }
+    .meetup-list-content .meetup .meetup-link .meetup-list-name {
+      font-size: 1.9rem;
+      line-height: 2.7rem;
+      margin-bottom: 0; }
+    .meetup-list-content .meetup .meetup-link .meetup-list-caption {
+      font-size: 1.4rem;
+      color: #999; }
+    .meetup-list-content .meetup .meetup-link .fa-angle-right {
+      opacity: 0;
+      float: right;
+      position: relative;
+      bottom: 35px;
+      transition: opacity 0.2s ease-in; }
+    .meetup-list-content .meetup .meetup-link.selected .meetup-list-name {
+      font-weight: 600; }
+    .meetup-list-content .meetup .meetup-link.selected .fa-angle-right {
+      opacity: 1; }
+  .meetup-list-content .meetup:hover {
+    background-color: #f7f7fa; }
+
+.modal-background {
+  overflow: auto;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3); }
+  .modal-background .modal-content {
+    width: 600px;
+    margin: 30px auto;
+    position: relative;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 1px 3px 0 rgba(0, 0, 0, 0.25); }
+    .modal-background .modal-content .modal-header {
+      padding: 10px 0 0;
+      border-bottom: 1px solid #e4e2e2;
+      text-align: center; }
+      .modal-background .modal-content .modal-header .modal-header-title {
+        font-weight: 500;
+        text-transform: uppercase;
+        color: #bbb; }
+    .modal-background .modal-content .modal-form {
+      padding: 15px; }
+      .modal-background .modal-content .modal-form .form-group {
+        float: left;
+        width: 275px; }
+        .modal-background .modal-content .modal-form .form-group:nth-child(odd) {
+          margin-right: 20px; }
+      .modal-background .modal-content .modal-form .add-form-input {
+        width: 275px; }
+        .modal-background .modal-content .modal-form .add-form-input.lg {
+          width: 100%;
+          max-width: 100%; }
+        .modal-background .modal-content .modal-form .add-form-input.flat-bottom {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0; }
+      .modal-background .modal-content .modal-form i.fa-calendar {
+        float: right;
+        position: absolute;
+        margin: 11px 0 0 -20px; }
+      .modal-background .modal-content .modal-form .day-picker {
+        position: absolute;
+        background-color: #fff;
+        margin-top: -15px;
+        width: 273px;
+        border: 1px solid #e4e2e2;
+        border-top: none; }
+        .modal-background .modal-content .modal-form .day-picker.collapsed {
+          display: none; }
+    .modal-background .modal-content i.fa-times {
+      float: right;
+      position: relative;
+      top: 10px;
+      right: 10px; }
+  .modal-background .image {
+    margin: -21px 0 0 10px;
+    position: absolute; }
+
+.spinner {
+  text-align: center; }
+
+@font-face {
+  font-family: "SF";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/SF-UI-Text-Light.otf"); }
+
+@font-face {
+  font-family: "SF";
+  font-style: normal;
+  font-weight: 500;
+  src: url("fonts/SF-UI-Text-Regular.otf"); }
+
+@font-face {
+  font-family: "SF";
+  font-style: normal;
+  font-weight: 600;
+  src: url("fonts/SF-UI-Text-Medium.otf"); }
+
+@font-face {
+  font-family: "SF";
+  font-style: normal;
+  font-weight: 800;
+  src: url("fonts/SF-UI-Text-Bold.otf"); }
+
+@font-face {
+  font-family: "SF";
+  font-style: normal;
+  font-weight: 200;
+  src: url("fonts/SF-UI-Display-UltraLight.otf"); }
+
+body {
+  overflow: hidden;
+  font-family: "SF", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+a {
+  cursor: pointer; }
+
+i.fa {
+  margin-right: 3px; }
+
+.link-danger {
+  font-weight: 500;
+  color: #da552f; }
+  .link-danger:hover {
+    color: #bf4927; }
+
+.centered {
+  text-align: center; }

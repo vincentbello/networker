@@ -42,7 +42,10 @@ module.exports = React.createClass({
     return (
       <div className="connections-list">
         <h4>Connections</h4>
-        <i className="fa fa-user-plus" onClick={this._addConnection}></i>
+        <span className="fa-stack fa-1x" onClick={this._addConnection}>
+          <i className="fa fa-circle-thin fa-stack-2x"></i>
+          <i className="fa fa-plus fa-stack-1x"></i>
+        </span>
         <table>
           <thead>
             <tr>

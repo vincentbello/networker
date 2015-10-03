@@ -1,0 +1,63 @@
+@import 'imports';
+
+@font-face {
+  font-family: "SF";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/SF-UI-Text-Light.otf");
+}
+
+@font-face {
+  font-family: "SF";
+  font-style: normal;
+  font-weight: 500;
+  src: url("fonts/SF-UI-Text-Regular.otf");
+}
+
+@font-face {
+  font-family: "SF";
+  font-style: normal;
+  font-weight: 600;
+  src: url("fonts/SF-UI-Text-Medium.otf");
+}
+
+@font-face {
+  font-family: "SF";
+  font-style: normal;
+  font-weight: 800;
+  src: url("fonts/SF-UI-Text-Bold.otf");
+}
+
+@font-face {
+  font-family: "SF";
+  font-style: normal;
+  font-weight: 200;
+  src: url("fonts/SF-UI-Display-UltraLight.otf");
+}
+
+body {
+  overflow: hidden;
+  font-family: "SF", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+a {
+  cursor: pointer;
+}
+
+i.fa {
+  margin-right: 3px;
+}
+
+.link-danger {
+  font-weight: 500;
+  color: $red-danger;
+
+  &:hover {
+    color: $red-danger-dark;
+  }
+}
+
+.centered {
+  text-align: center;
+}

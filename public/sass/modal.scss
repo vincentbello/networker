@@ -1,0 +1,93 @@
+@import 'imports';
+
+.modal-background {
+  overflow: auto;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,.3);
+
+  .modal-content {
+    width: 600px;
+    margin: 30px auto;
+    position: relative;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.15),0 1px 3px 0 rgba(0,0,0,0.25);
+
+    .modal-header {
+
+      padding: 10px 0 0;
+      border-bottom: 1px solid $gray-2;
+      text-align: center;
+
+      .modal-header-title {
+        font-weight: 500;
+        text-transform: uppercase;
+        color: $gray-3;
+      }
+    }
+
+    .modal-form {
+      padding: 15px;
+
+      .form-group {
+        float: left;
+        width: 275px;
+
+        &:nth-child(odd) {
+          margin-right: 20px;
+        }
+      }
+
+      .add-form-input {
+        width: 275px;
+
+        &.lg {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        &.flat-bottom {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      i.fa-calendar {
+        float: right;
+        position: absolute;
+        margin: 11px 0 0 -20px;
+      }
+
+      .day-picker {
+        position: absolute;
+        background-color: $white;
+        margin-top: -15px;
+        width: 273px;
+        border: 1px solid $gray-2;
+        border-top: none;
+
+        &.collapsed {
+          display: none;
+        }
+      }
+    }
+
+    i.fa-times {
+      float: right;
+      position: relative;
+      top: 10px;
+      right: 10px;
+    }
+  }
+
+  .image {
+    margin: -21px 0 0 10px;
+    position: absolute;
+
+  }
+}

@@ -1,15 +1,17 @@
-var React = require('react'),
+var React = require('react/addons'),
     Helpers = require('../utils/helpers'),
     Actions = require('../actions'),
     Navigation = require('react-router').Navigation,
     DayPicker = require('react-day-picker'),
     moment = require('moment'),
+    classnames = require('classnames'),
     Spinner = require('./spinner');
 
 module.exports = React.createClass({
 
   mixins: [
-    Navigation
+    Navigation,
+    React.addons.LinkedStateMixin
   ],
 
   _handleSubmit: function(e) {
@@ -37,52 +39,27 @@ module.exports = React.createClass({
     }
   },
 
-  // _addMeetupCompleted: function(meetupId) {
-  //   // clear form
-  //   this.setState({
-  //     saved: false,
-  //     name: '',
-  //     date: '',
-  //     address: '',
-  //     website: '',
-  //     notes: ''
-  //   });
-  // },
-
-  _handleNameChange: function(e) {
-    this.setState({
-      name: e.currentTarget.value
-    });
-  },
-
-  _handleDateChange: function(e) {
-    this.setState({
-      date: e.currentTarget.value
-    });
-  },
-
   _handleDayPickerChange: function(e, day) {
     this.setState({
-      date: day
+      date: day,
+      datePicking: false
     });
   },
 
-  _handleAddressChange: function(e) {
+  _revealDatePicker: function(e) {
     this.setState({
-      address: e.currentTarget.value
+      datePicking: !this.state.datePicking
+    })
+  },
+
+  _hideDatePicker: function(e) {
+    this.setState({
+      datePicking: false
     });
   },
 
-  _handleWebsiteChange: function(e) {
-    this.setState({
-      website: e.currentTarget.value
-    });
-  },
-
-  _handleNotesChange: function(e) {
-    this.setState({
-      notes: e.currentTarget.value
-    });
+  _preventHideDatePicker: function(e) {
+    e.stopPropagation();
   },
 
   // TODO: Get a JavaScript date picker
@@ -92,6 +69,7 @@ module.exports = React.createClass({
     if (this.props.meetup) {
       return {
         saved: false,
+        datePicking: false,
         name: this.props.meetup.name || '',
         date: new Date(this.props.meetup.date) || new Date(),
         address: this.props.meetup.address || '',
@@ -102,6 +80,7 @@ module.exports = React.createClass({
 
     return {
       saved: false,
+      datePicking: false,
       name: '',
       date: new Date(),
       address: '',
@@ -115,10 +94,13 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      <div className="add-meetup">
-        <h2>
-          {this.props.meetup ? 'Edit' : 'Add'} Meetup
-        </h2>
+      <div className="add-meetup" onClick={this._hideDatePicker}>
+        <div className="modal-header">
+          <div className="modal-header-title">
+            {this.props.meetup ? 'Editing' : 'New'} Meetup
+          </div>
+          <h2>{this.state.name}</h2>
+        </div>
         {this._renderForm()}
       </div>
     );
@@ -126,8 +108,10 @@ module.exports = React.createClass({
 
   _renderForm: function() {
 
-    var selectedDay = this.state.date;
-    var modifiers = {
+    var selectedDay = this.state.date,
+        dayPickerClassName = classnames('day-picker', this.state.datePicking ? null : 'collapsed'),
+        formInput = classnames('add-form-input', this.state.datePicking ? 'flat-bottom' : null),
+        modifiers = {
       'selected': function(day) {
         return Helpers.isSameDay(selectedDay, day);
       }
@@ -135,56 +119,70 @@ module.exports = React.createClass({
 
     // TODO: input classNames should change if invalid on form submit
     return (
-      <form onSubmit={this._handleSubmit} className="add-form">
-        <label htmlFor="add-meetup-name">Name</label>
-        <input
-          type="text"
-          className="add-form-input"
-          id="add-meetup-name"
-          value={this.state.name}
-          onChange={ this._handleNameChange }
-        />
-        <label htmlFor="add-meetup-date">Date</label>
-        <DayPicker
-          enableOutsideDays={ true }
-          initialMonth={ this.state.date }
-          modifiers={ modifiers }
-          onDayClick={ this._handleDayPickerChange }
-        />
-        <input
-          type="text"
-          className="add-form-input"
-          id="add-meetup-date"
-          value={ moment(this.state.date).format('MMMM D, YYYY') }
-        />
-        <label htmlFor="add-meetup-address">Address</label>
-        <input
-          type="text"
-          className="add-form-input"
-          id="add-meetup-address"
-          value={this.state.address}
-          onChange={ this._handleAddressChange }
-        />
-        <label htmlFor="add-meetup-website">Website</label>
-        <input
-          type="text"
-          className="add-form-input"
-          id="add-meetup-website"
-          value={this.state.website}
-          onChange={ this._handleWebsiteChange }
-        />
+      <form onSubmit={this._handleSubmit} className="add-form modal-form">
+        <div className="form-group">
+          <label htmlFor="add-meetup-name">Name</label>
+          <input
+            type="text"
+            className="add-form-input"
+            id="add-meetup-name"
+            autoFocus={true}
+            valueLink={this.linkState('name')}
+          />
+        </div>
+        <div className="form-group" onClick={this._preventHideDatePicker}>
+          <label htmlFor="add-meetup-date">Date</label>
+          <input
+            type="text"
+            className={formInput}
+            id="add-meetup-date"
+            readOnly={true}
+            onFocus={this._revealDatePicker}
+            value={ moment(this.state.date).format('MMMM D, YYYY') }
+          />
+          <a onClick={this._revealDatePicker}>
+            <i className="fa fa-calendar"></i>
+          </a>
+          <DayPicker
+            className={dayPickerClassName}
+            enableOutsideDays={ true }
+            initialMonth={ this.state.date }
+            modifiers={ modifiers }
+            onDayClick={ this._handleDayPickerChange }
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="add-meetup-address">Location</label>
+          <input
+            type="text"
+            className="add-form-input"
+            id="add-meetup-address"
+            valueLink={this.linkState('address')}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="add-meetup-website">Website</label>
+          <input
+            type="text"
+            className="add-form-input"
+            id="add-meetup-website"
+            valueLink={this.linkState('website')}
+          />
+        </div>
         <label htmlFor="add-meetup-notes">Notes</label>
         <textarea
-          className="add-form-input"
+          className="add-form-input lg"
           id="add-meetup-notes"
-          value={this.state.notes}
-          onChange={ this._handleNotesChange }
+          rows="4"
+          valueLink={this.linkState('notes')}
         />
-        <button
-          type="submit"
-          className="button button-primary" disabled={this.state.saved}>
-          { this.state.saved ? <Spinner text='Adding...' /> : 'Save'}
-        </button>
+        <div className="centered">
+          <button
+            type="submit"
+            className="button button-primary" disabled={this.state.saved}>
+            { this.state.saved ? <Spinner text='Adding...' /> : 'Save'}
+          </button>
+        </div>
       </form>
     );
 

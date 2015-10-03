@@ -132,10 +132,10 @@ module.exports = React.createClass({
     return {
       saved: false,
       name: '',
-      photo: 'img/photo_placeholder.png',
+      photo: 'public/img/photo_placeholder.png',
       company: '',
       position: '',
-      logo: 'img/logo_placeholder.png',
+      logo: 'public/img/logo_placeholder.png',
       facebook: '',
       linkedin: '',
       twitter: '',

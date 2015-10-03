@@ -96,28 +96,33 @@ module.exports = React.createClass({
     } else {
       inner = (
         <div className="detail-meetup-info">
-          <h3>{meetup.name}</h3>
-          <i className="fa fa-pencil" onClick={this._editMeetup}></i>
-          <p><i className="fa fa-calendar-check-o fa-fw"></i> {moment(meetup.date).format('MMMM D, YYYY')}</p>
-          <p><i className="fa fa-map-pin fa-fw"></i> {meetup.address}</p>
-          <p><i className="fa fa-external-link-square fa-fw"></i> <a href={meetup.website} target="_blank">Event Website</a></p>
-          <div className="detail-meetup-desc">
-            <h5>Notes</h5>
-            <div dangerouslySetInnerHTML={this._renderNotes()} />
+          <div className="detail-meetup-header">
+            <h3>{meetup.name}</h3>
+            <a onClick={this._editMeetup}>
+              <i className="fa fa-pencil icon-action"></i> Edit Meetup
+            </a>
+            <i className="fa fa-circle"></i>
+            {this._renderRemove()}
           </div>
-          <div className="meetup-connections">
-            <ConnectionList { ...this.props.params } />
+          <div className="detail-meetup-content">
+            <div className="detail-meetup-event-details">
+              <p><i className="fa fa-calendar-check-o fa-fw"></i> {moment(meetup.date).format('MMMM D, YYYY')}</p>
+              <p><i className="fa fa-map-pin fa-fw"></i> {meetup.address}</p>
+              <p><i className="fa fa-external-link-square fa-fw"></i> <a href={meetup.website} target="_blank">Event Website</a></p>
+            </div>
+            <div className="detail-meetup-desc">
+              <h5>Notes</h5>
+              <div dangerouslySetInnerHTML={this._renderNotes()} />
+            </div>
+            <div className="meetup-connections">
+              <ConnectionList { ...this.props.params } />
+            </div>
           </div>
-          {this._renderRemove()}
         </div>
       );
     }
 
-    return (
-      <div className="detail-meetup-content">
-        {inner}
-      </div>
-    );
+    return inner;
   },
 
   _renderNotes: function() {
@@ -125,23 +130,26 @@ module.exports = React.createClass({
   },
 
   _renderRemove: function() {
-    var confirm = '';
+    var confirm;
 
     if (this.state.removing) {
       confirm = (
         <span>
-          <a onClick={this._confirmRemoveMeetup}>Remove</a> - <a onClick={this._cancelRemove}>Cancel</a>
+          <a className="link-danger" onClick={this._confirmRemoveMeetup}>Remove</a> - <a onClick={this._cancelRemove}>Cancel</a>
         </span>
+      );
+    } else {
+      confirm = (
+        <a onClick={this._removeMeetup}>
+          <i className="fa fa-trash-o icon-action"></i> Remove Meetup
+        </a>
       );
     }
 
     return (
-      <p className="remove-meetup">
-        <a onClick={this._removeMeetup}>
-          <i className="fa fa-trash-o"></i> Remove Meetup
-        </a>
+      <span className="remove-meetup">
         {confirm}
-      </p>
+      </span>
     );
   }
 });

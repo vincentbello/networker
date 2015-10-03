@@ -12,7 +12,7 @@ module.exports = React.createClass({
       <div className="modal-background" onClick={this.props.dismissModal}>
         <div className="modal-content" onClick={this._preventDismiss}>
           <a onClick={this.props.dismissModal}>
-            <i className="fa fa-times"></i> Dismiss
+            <i className="fa fa-times"></i>
           </a>
           {this.props.children}
         </div>
