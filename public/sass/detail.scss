@@ -4,13 +4,29 @@
 
   height: 100%;
   overflow-y: scroll;
-  background-color: $gray-1;
 
   .detail-empty {
     position: relative;
     top: 40%;
     transform: translateY(-60%);
     text-align: center;
+  }
+
+  .detail-header {
+    width: 100%;
+    padding: 15px 0 5px;
+    text-align: center;
+    background-color: $white;
+    border-bottom: 1px solid $gray-2;
+
+    h3 {
+      margin-bottom: 10px;
+    }
+  }
+
+  .detail-content {
+    padding: 15px 10px 50px;
+
   }
 
 }

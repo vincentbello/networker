@@ -1,0 +1,45 @@
+@import 'imports';
+
+.detail-connection {
+
+  .detail-header {
+    .image {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+  }
+
+  .company-info {
+
+    width: 100%;
+    overflow: hidden;
+
+    .image {
+      float: left;
+    }
+
+    .position {
+      font-size: 2rem;
+      margin-left: 90px;
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+
+    .company {
+      font-size: 1.7rem;
+      margin-left: 90px;
+      color: $gray-5;
+    }
+
+    &.no-logo {
+      .position, .company {
+        margin-left: 0;
+      }
+    }
+
+
+  }
+
+
+
+}

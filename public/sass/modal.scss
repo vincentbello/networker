@@ -34,22 +34,9 @@
     .modal-form {
       padding: 15px;
 
-      .form-group {
-        float: left;
-        width: 275px;
-
-        &:nth-child(odd) {
-          margin-right: 20px;
-        }
-      }
-
       .add-form-input {
-        width: 275px;
 
-        &.lg {
-          width: 100%;
-          max-width: 100%;
-        }
+        width: 100%;
 
         &.flat-bottom {
           border-bottom-left-radius: 0;
@@ -83,11 +70,5 @@
       top: 10px;
       right: 10px;
     }
-  }
-
-  .image {
-    margin: -21px 0 0 10px;
-    position: absolute;
-
   }
 }

@@ -1,8 +1,7 @@
 var React = require('react'),
     Reflux = require('reflux'),
     ConnectionsStore = require('../stores/connections-store'),
-    Actions = require('../actions'),
-    Connection = require('./connection');
+    Actions = require('../actions');
 
 var Connection = require('./connection'),
     Spinner = require('./spinner');
@@ -42,24 +41,10 @@ module.exports = React.createClass({
     return (
       <div className="connections-list">
         <h4>Connections</h4>
-        <span className="fa-stack fa-1x" onClick={this._addConnection}>
-          <i className="fa fa-circle-thin fa-stack-2x"></i>
-          <i className="fa fa-plus fa-stack-1x"></i>
-        </span>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Company</th>
-              <th>Position</th>
-              <th>Contact</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.loaded ? this._renderConnections() : ''}
-          </tbody>
-        </table>
+        <a onClick={this._addConnection}>
+          <i className="fa fa-plus"></i> Add Connection
+        </a>
+        {this.state.loaded ? this._renderConnections() : ''}
       </div>
     );
   },
@@ -73,11 +58,28 @@ module.exports = React.createClass({
       );
     }
 
-    return connections.map(function(connection) {
+    var connectionItems = connections.map(function(connection) {
       return (
-        <Connection connection={connection} key={connection.id}>
-        </Connection>
+        <Connection connection={connection} key={connection.id} />
       );
     });
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Contact</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {connectionItems}
+        </tbody>
+      </table>
+    );
   }
 });

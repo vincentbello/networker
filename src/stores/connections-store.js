@@ -7,6 +7,7 @@ var baseRef = new Firebase(firebaseUrl),
     connectionsRef = baseRef.child('connections');
 
 var data = {
+  meetupId: undefined,
   connections: [],
   sort: {
     asc: true,
@@ -19,6 +20,7 @@ module.exports = Reflux.createStore({
   listenables: [Actions],
 
   watchConnections: function(meetupId) {
+    data.meetupId = meetupId;
     connectionsRef
       .orderByChild('meetupId')
       .startAt(meetupId)

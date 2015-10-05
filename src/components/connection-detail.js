@@ -3,7 +3,8 @@ var React = require('react'),
     Actions = require('../actions'),
     Navigation = require('react-router').Navigation,
     ConnectionDetailStore = require('../stores/connection-detail-store'),
-    Constants = require('../utils/constants');
+    Constants = require('../utils/constants'),
+    classnames = require('classnames');
 
 var Image = require('./image'),
     Spinner = require('./spinner');
@@ -56,7 +57,7 @@ module.exports = React.createClass({
         loading: true
       });
 
-      Actions.stopWatchConnection(this.props.params.connectionId);
+//      Actions.stopWatchConnection(this.props.params.connectionId);
       Actions.watchConnection(nextProps.params.connectionId);
     }
   },
@@ -85,25 +86,48 @@ module.exports = React.createClass({
 
   _renderContent: function() {
 
-    var connection = this.state.connection,
-        inner;
+    var inner;
 
     if (this.state.loading) {
       inner = (
         <Spinner text="Loading Connection..." />
       );
     } else {
+
+      var connection = this.state.connection,
+          photo = connection.photo.length ? (<Image src={connection.photo} />) : undefined,
+          logo = connection.company.logo.length ? (<Image src={connection.company.logo} />) : undefined,
+          companyClassname = classnames('company-info', connection.company.logo.length ? null : 'no-logo');
+
       inner = (
-        <div className="detail-connection-info">
-          <Image src={connection.photo} />
-          <h3>{connection.name}</h3>
-          <i className="fa fa-pencil" onClick={this._editConnection}></i>
-          <Image src={connection.company.logo} />
-          <p><i class="fa fa-briefcase"></i> <em>{connection.company.position}</em> at <strong>{connection.company.name}</strong></p>
-          <h5>Contact Information</h5>
-          {this._renderContactInfo()}
-          {this._renderRemove()}
+
+        <div className="detail-info">
+          <div className="detail-header">
+            <h3>
+              {photo}
+              {connection.name}
+            </h3>
+            <a onClick={this._editConnection}>
+              <i className="fa fa-pencil icon-action"></i> Edit Connection
+            </a>
+            <i className="fa fa-circle divider"></i>
+            {this._renderRemove()}
+          </div>
+          <div className="detail-content">
+            <div className={companyClassname}>
+              {logo}
+              <p className="position">
+                {connection.company.position}
+              </p>
+              <p className="company">
+                {connection.company.name}
+              </p>
+            </div>
+            <h5>Contact Information</h5>
+            {this._renderContactInfo()}
+          </div>
         </div>
+
       );
     }
 
@@ -144,7 +168,7 @@ module.exports = React.createClass({
         }
 
         return (
-          <p><i className={'fa fa-' + contactAttrib.iconClass}></i> {contactAttrib.name}: {inner}</p>
+          <p><i className={'fa fa-fw fa-lg fa-' + contactAttrib.iconClass}></i> {contactAttrib.name}: {inner}</p>
         );
       }
 
@@ -152,23 +176,27 @@ module.exports = React.createClass({
   },
 
   _renderRemove: function() {
-    var confirm = '';
+    var name = this.state.connection.name,
+        confirm;
 
     if (this.state.removing) {
       confirm = (
         <span>
-          <a onClick={this._confirmRemoveConnection}>Remove</a> - <a onClick={this._cancelRemove}>Cancel</a>
+          <a className="link-danger" onClick={this._confirmRemoveConnection}>Remove {name}</a> - <a onClick={this._cancelRemove}>Cancel</a>
         </span>
+      );
+    } else {
+      confirm = (
+        <a onClick={this._removeConnection}>
+          <i className="fa fa-trash-o icon-action"></i> Remove Connection
+        </a>
       );
     }
 
     return (
-      <p className="remove-connection">
-        <a onClick={this._removeConnection}>
-          <i className="fa fa-trash-o"></i> Remove Connection
-        </a>
+      <span className="remove-connection">
         {confirm}
-      </p>
+      </span>
     );
   }
 });

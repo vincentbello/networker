@@ -51,7 +51,7 @@ module.exports = React.createClass({
     return (
       <div>
         <Header />
-        <MeetupList />
+        <MeetupList {...this.props} />
         <div className="detail">
           {this._detailContent()}
         </div>

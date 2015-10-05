@@ -43,7 +43,7 @@ module.exports = React.createClass({
       <div className="meetup-list">
         <h4 className="meetup-list-header">
           <a onClick={ this._addMeetup }>
-            <i className="fa fa-plus-square-o"></i>
+            <i className="fa fa-plus" title="Add a Meetup"></i>
           </a>
           <i className="fa fa-calendar"></i>  Meetups
           <i className="fa fa-angle-down"></i>
@@ -56,7 +56,8 @@ module.exports = React.createClass({
   },
 
   _renderMeetups: function() {
-    var meetups = this.state.meetups;
+    var meetups = this.state.meetups,
+        params = this.props.params;
 
     if (!meetups.length) {
       return (
@@ -66,8 +67,7 @@ module.exports = React.createClass({
 
     return meetups.map(function(meetup) {
       return (
-        <Meetup meetup={meetup} key={meetup.id}>
-        </Meetup>
+        <Meetup meetup={meetup} key={meetup.id} {...params} />
       );
     });
   }

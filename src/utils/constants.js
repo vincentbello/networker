@@ -1,6 +1,9 @@
 module.exports = {
   FIREBASE_URL: 'https://networker-vrbello.firebaseio.com/',
 
+  PHOTO_PLACEHOLDER: 'public/img/photo_placeholder.png',
+  LOGO_PLACEHOLDER: 'public/img/logo_placeholder.png',
+
   contactAttribs: {
 
     email: {
@@ -21,6 +24,11 @@ module.exports = {
     phone: {
       name: 'Phone',
       iconClass: 'phone-square'
+    },
+
+    skype: {
+      name: 'Skype',
+      iconClass: 'skype'
     },
 
     twitter: {

@@ -2,6 +2,7 @@ var React = require('react'),
     Actions = require('../actions'),
     Router = require('react-router'),
     Link = Router.Link,
+    Image = require('./image'),
     Constants = require('../utils/constants');
 
 module.exports = React.createClass({
@@ -15,8 +16,20 @@ module.exports = React.createClass({
   },
 
   render: function() {
+
+    var img;
+
+    if (this.props.connection.photo.length) {
+      img = (
+        <Image src={this.props.connection.photo} />
+      );
+    }
+
     return (
-        <tr className="connection">
+        <tr className="connection" key={this.props.key}>
+          <td>
+            {img}
+          </td>
           <td>
             <Link to={'connections/' + this.props.connection.id}>
               {this.props.connection.name}
@@ -32,8 +45,12 @@ module.exports = React.createClass({
             {this._renderContactInfo()}
           </td>
           <td>
-            <i className="fa fa-pencil" onClick={this._editConnection}></i>
-            <i className="fa fa-times" onClick={this._removeConnection}></i>
+            <a onClick={this._editConnection} title="Edit Connection">
+              <i className="fa fa-pencil"></i>
+            </a>
+            <a onClick={this._removeConnection} title="Remove Connection">
+              <i className="fa fa-times"></i>
+            </a>
           </td>
         </tr>
     );
@@ -45,7 +62,9 @@ module.exports = React.createClass({
     return Object.keys(contact).map(function(contactType) {
       if (contact[contactType] && contact[contactType].length) {
         return (
-          <i className={'fa fa-' + Constants.contactAttribs[contactType].iconClass}></i>
+          <i className={'fa fa-' + Constants.contactAttribs[contactType].iconClass}
+              title={Constants.contactAttribs[contactType].name}
+          ></i>
         );
       }
     });

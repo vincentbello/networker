@@ -15,7 +15,7 @@
     text-transform: uppercase;
     border-bottom: 1px solid $gray-2;
 
-    .fa-plus-square-o {
+    .fa-plus {
       float: left;
       position: relative;
       left: 10px;
@@ -61,14 +61,50 @@
         bottom: 35px;
         transition: opacity 0.2s ease-in;
       }
+    }
 
-      &.selected {
-        .meetup-list-name {
+    &.selected {
+
+      .meetup-list-name {
+        font-weight: 600;
+      }
+
+      .fa-angle-right {
+        opacity: 1;
+      }
+    }
+
+    .subconnection-list {
+      list-style-type: none;
+      margin-top: 0.8rem;
+
+      .list-header {
+        text-transform: uppercase;
+        color: $gray-4;
+        font-size: 1.4rem;
+        font-weight: 600;
+
+        i.fa-angle-down {
           font-weight: 600;
         }
+      }
 
-        .fa-angle-right {
-          opacity: 1;
+      .subconnection {
+        margin: 0 0 0.8rem 1rem;
+
+        i.fa-angle-right {
+          opacity: 0;
+          transition: opacity 0.2s ease-in;
+          font-weight: 600;
+          float: right;
+        }
+
+        .selected {
+          font-weight: 600;
+
+          i.fa-angle-right {
+            opacity: 1;
+          }
         }
       }
     }

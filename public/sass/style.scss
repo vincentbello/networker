@@ -43,10 +43,43 @@ body {
 
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 
 i.fa {
   margin-right: 3px;
+
+  &.fa-envelope {
+    color: $gray-3;
+  }
+
+  &.fa-linkedin-square {
+    color: $color-linkedin;
+  }
+
+  &.fa-facebook-square {
+    color: $color-facebook;
+  }
+
+  &.fa-twitter-square {
+    color: $color-twitter;
+  }
+
+  &.fa-phone-square {
+    color: $color-phone;
+  }
+
+  &.fa-skype {
+    color: $color-skype;
+  }
+
+}
+
+i.fa-circle.divider {
+  font-size: 4px;
+  position: relative;
+  top: -3px;
+  margin: 0 12px 0 10px;
 }
 
 .link-danger {

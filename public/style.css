@@ -1,3 +1,24 @@
+.detail-connection .detail-header .image {
+  vertical-align: middle;
+  margin-right: 10px; }
+
+.detail-connection .company-info {
+  width: 100%;
+  overflow: hidden; }
+  .detail-connection .company-info .image {
+    float: left; }
+  .detail-connection .company-info .position {
+    font-size: 2rem;
+    margin-left: 90px;
+    margin-top: 10px;
+    margin-bottom: 0; }
+  .detail-connection .company-info .company {
+    font-size: 1.7rem;
+    margin-left: 90px;
+    color: #616668; }
+  .detail-connection .company-info.no-logo .position, .detail-connection .company-info.no-logo .company {
+    margin-left: 0; }
+
 
 .DayPicker {
   display: flex;
@@ -98,13 +119,22 @@
 
 .detail {
   height: 100%;
-  overflow-y: scroll;
-  background-color: #f7f7fa; }
+  overflow-y: scroll; }
   .detail .detail-empty {
     position: relative;
     top: 40%;
     transform: translateY(-60%);
     text-align: center; }
+  .detail .detail-header {
+    width: 100%;
+    padding: 15px 0 5px;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 1px solid #e4e2e2; }
+    .detail .detail-header h3 {
+      margin-bottom: 10px; }
+  .detail .detail-content {
+    padding: 15px 10px 50px; }
 
 .header {
   height: 50px;
@@ -147,25 +177,30 @@
   .image.image-loaded {
     opacity: 1; }
 
-.detail-meetup .detail-meetup-header {
-  width: 100%;
-  padding: 15px 0 5px;
-  text-align: center;
-  background-color: #fff;
-  border-bottom: 1px solid #e4e2e2; }
-  .detail-meetup .detail-meetup-header h3 {
-    margin-bottom: 10px; }
-  .detail-meetup .detail-meetup-header i.fa-circle {
-    font-size: 4px;
-    position: relative;
-    top: -3px;
-    margin: 0 12px 0 10px; }
-
 .detail-meetup .detail-meetup-event-details {
-  width: 50%;
-  min-width: 300px; }
+  text-align: center; }
+  .detail-meetup .detail-meetup-event-details i.fa {
+    margin-left: 20px; }
   .detail-meetup .detail-meetup-event-details p {
     margin-bottom: 10px; }
+
+.detail-meetup .connections-list table {
+  width: 100%; }
+  .detail-meetup .connections-list table tbody tr {
+    height: 60px; }
+    .detail-meetup .connections-list table tbody tr td:first-child {
+      padding: 5px 0 5px 5px; }
+    .detail-meetup .connections-list table tbody tr td .image {
+      height: 50px;
+      width: 50px;
+      border-radius: 25px; }
+    .detail-meetup .connections-list table tbody tr:nth-child(odd) {
+      background-color: #f7f7fa; }
+    .detail-meetup .connections-list table tbody tr:hover td:last-child i.fa {
+      opacity: 1; }
+    .detail-meetup .connections-list table tbody tr td:last-child i.fa {
+      transition: opacity 0.2s ease-in;
+      opacity: 0; }
 
 .meetup-list {
   float: left;
@@ -180,7 +215,7 @@
     font-size: 1.7rem;
     text-transform: uppercase;
     border-bottom: 1px solid #e4e2e2; }
-    .meetup-list .meetup-list-header .fa-plus-square-o {
+    .meetup-list .meetup-list-header .fa-plus {
       float: left;
       position: relative;
       left: 10px;
@@ -212,10 +247,31 @@
       position: relative;
       bottom: 35px;
       transition: opacity 0.2s ease-in; }
-    .meetup-list-content .meetup .meetup-link.selected .meetup-list-name {
+  .meetup-list-content .meetup.selected .meetup-list-name {
+    font-weight: 600; }
+  .meetup-list-content .meetup.selected .fa-angle-right {
+    opacity: 1; }
+  .meetup-list-content .meetup .subconnection-list {
+    list-style-type: none;
+    margin-top: 0.8rem; }
+    .meetup-list-content .meetup .subconnection-list .list-header {
+      text-transform: uppercase;
+      color: #a8a8a8;
+      font-size: 1.4rem;
       font-weight: 600; }
-    .meetup-list-content .meetup .meetup-link.selected .fa-angle-right {
-      opacity: 1; }
+      .meetup-list-content .meetup .subconnection-list .list-header i.fa-angle-down {
+        font-weight: 600; }
+    .meetup-list-content .meetup .subconnection-list .subconnection {
+      margin: 0 0 0.8rem 1rem; }
+      .meetup-list-content .meetup .subconnection-list .subconnection i.fa-angle-right {
+        opacity: 0;
+        transition: opacity 0.2s ease-in;
+        font-weight: 600;
+        float: right; }
+      .meetup-list-content .meetup .subconnection-list .subconnection .selected {
+        font-weight: 600; }
+        .meetup-list-content .meetup .subconnection-list .subconnection .selected i.fa-angle-right {
+          opacity: 1; }
   .meetup-list-content .meetup:hover {
     background-color: #f7f7fa; }
 
@@ -245,16 +301,8 @@
         color: #bbb; }
     .modal-background .modal-content .modal-form {
       padding: 15px; }
-      .modal-background .modal-content .modal-form .form-group {
-        float: left;
-        width: 275px; }
-        .modal-background .modal-content .modal-form .form-group:nth-child(odd) {
-          margin-right: 20px; }
       .modal-background .modal-content .modal-form .add-form-input {
-        width: 275px; }
-        .modal-background .modal-content .modal-form .add-form-input.lg {
-          width: 100%;
-          max-width: 100%; }
+        width: 100%; }
         .modal-background .modal-content .modal-form .add-form-input.flat-bottom {
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0; }
@@ -276,9 +324,6 @@
       position: relative;
       top: 10px;
       right: 10px; }
-  .modal-background .image {
-    margin: -21px 0 0 10px;
-    position: absolute; }
 
 .spinner {
   text-align: center; }
@@ -318,10 +363,29 @@ body {
   font-family: "SF", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 a {
-  cursor: pointer; }
+  cursor: pointer;
+  text-decoration: none; }
 
 i.fa {
   margin-right: 3px; }
+  i.fa.fa-envelope {
+    color: #bbb; }
+  i.fa.fa-linkedin-square {
+    color: #0077b5; }
+  i.fa.fa-facebook-square {
+    color: #3b5998; }
+  i.fa.fa-twitter-square {
+    color: #4099ff; }
+  i.fa.fa-phone-square {
+    color: #47B822; }
+  i.fa.fa-skype {
+    color: #12a5f4; }
+
+i.fa-circle.divider {
+  font-size: 4px;
+  position: relative;
+  top: -3px;
+  margin: 0 12px 0 10px; }
 
 .link-danger {
   font-weight: 500;

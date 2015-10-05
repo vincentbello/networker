@@ -95,20 +95,22 @@ module.exports = React.createClass({
       );
     } else {
       inner = (
-        <div className="detail-meetup-info">
-          <div className="detail-meetup-header">
+        <div className="detail-info">
+          <div className="detail-header">
             <h3>{meetup.name}</h3>
             <a onClick={this._editMeetup}>
               <i className="fa fa-pencil icon-action"></i> Edit Meetup
             </a>
-            <i className="fa fa-circle"></i>
+            <i className="fa fa-circle divider"></i>
             {this._renderRemove()}
           </div>
-          <div className="detail-meetup-content">
+          <div className="detail-content">
             <div className="detail-meetup-event-details">
-              <p><i className="fa fa-calendar-check-o fa-fw"></i> {moment(meetup.date).format('MMMM D, YYYY')}</p>
-              <p><i className="fa fa-map-pin fa-fw"></i> {meetup.address}</p>
-              <p><i className="fa fa-external-link-square fa-fw"></i> <a href={meetup.website} target="_blank">Event Website</a></p>
+              <p>
+                <i className="fa fa-calendar-check-o"></i> {moment(meetup.date).format('MMMM D, YYYY')}
+                <i className="fa fa-map-pin"></i> {meetup.address}
+                <i className="fa fa-external-link"></i> <a href={meetup.website} target="_blank">Event Website</a>
+              </p>
             </div>
             <div className="detail-meetup-desc">
               <h5>Notes</h5>

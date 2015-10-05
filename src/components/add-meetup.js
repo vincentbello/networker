@@ -120,58 +120,62 @@ module.exports = React.createClass({
     // TODO: input classNames should change if invalid on form submit
     return (
       <form onSubmit={this._handleSubmit} className="add-form modal-form">
-        <div className="form-group">
-          <label htmlFor="add-meetup-name">Name</label>
-          <input
-            type="text"
-            className="add-form-input"
-            id="add-meetup-name"
-            autoFocus={true}
-            valueLink={this.linkState('name')}
-          />
+        <div className="row">
+          <div className="six columns">
+            <label htmlFor="add-meetup-name">Name</label>
+            <input
+              type="text"
+              className="add-form-input"
+              id="add-meetup-name"
+              autoFocus={true}
+              valueLink={this.linkState('name')}
+            />
+          </div>
+          <div className="six columns" onClick={this._preventHideDatePicker}>
+            <label htmlFor="add-meetup-date">Date</label>
+            <input
+              type="text"
+              className={formInput}
+              id="add-meetup-date"
+              readOnly={true}
+              onFocus={this._revealDatePicker}
+              value={ moment(this.state.date).format('MMMM D, YYYY') }
+            />
+            <a onClick={this._revealDatePicker}>
+              <i className="fa fa-calendar"></i>
+            </a>
+            <DayPicker
+              className={dayPickerClassName}
+              enableOutsideDays={ true }
+              initialMonth={ this.state.date }
+              modifiers={ modifiers }
+              onDayClick={ this._handleDayPickerChange }
+            />
+          </div>
         </div>
-        <div className="form-group" onClick={this._preventHideDatePicker}>
-          <label htmlFor="add-meetup-date">Date</label>
-          <input
-            type="text"
-            className={formInput}
-            id="add-meetup-date"
-            readOnly={true}
-            onFocus={this._revealDatePicker}
-            value={ moment(this.state.date).format('MMMM D, YYYY') }
-          />
-          <a onClick={this._revealDatePicker}>
-            <i className="fa fa-calendar"></i>
-          </a>
-          <DayPicker
-            className={dayPickerClassName}
-            enableOutsideDays={ true }
-            initialMonth={ this.state.date }
-            modifiers={ modifiers }
-            onDayClick={ this._handleDayPickerChange }
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="add-meetup-address">Location</label>
-          <input
-            type="text"
-            className="add-form-input"
-            id="add-meetup-address"
-            valueLink={this.linkState('address')}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="add-meetup-website">Website</label>
-          <input
-            type="text"
-            className="add-form-input"
-            id="add-meetup-website"
-            valueLink={this.linkState('website')}
-          />
+        <div className="row">
+          <div className="six columns">
+            <label htmlFor="add-meetup-address">Location</label>
+            <input
+              type="text"
+              className="add-form-input"
+              id="add-meetup-address"
+              valueLink={this.linkState('address')}
+            />
+          </div>
+          <div className="six columns">
+            <label htmlFor="add-meetup-website">Website</label>
+            <input
+              type="text"
+              className="add-form-input"
+              id="add-meetup-website"
+              valueLink={this.linkState('website')}
+            />
+          </div>
         </div>
         <label htmlFor="add-meetup-notes">Notes</label>
         <textarea
-          className="add-form-input lg"
+          className="add-form-input"
           id="add-meetup-notes"
           rows="4"
           valueLink={this.linkState('notes')}
