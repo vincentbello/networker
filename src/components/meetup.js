@@ -1,7 +1,9 @@
 var React = require('react'),
     Reflux = require('reflux'),
     Router = require('react-router'),
+    Actions = require('../actions'),
     ConnectionsStore = require('../stores/connections-store'),
+    ConnectionDetailStore = require('../stores/connection-detail-store'),
     Link = Router.Link,
     classnames = require('classnames');
 
@@ -11,15 +13,22 @@ var SubConnection = require('./subconnection'),
 module.exports = React.createClass({
 
   mixins: [
-    Reflux.listenTo(ConnectionsStore, 'onChange')
+    Reflux.listenTo(ConnectionsStore, 'onChange'),
+    Reflux.listenTo(ConnectionDetailStore, 'onConnectionLoad')
   ],
 
 // NO NEED TO WATCH, JUST LISTEN
 
   _handleSelect: function(event) {
-    this.setState({
-      selected: true
-    });
+
+    console.log('_handleSelect');
+
+    // if (this.state.selected) {
+    //   this.setState({
+    //     selected: false,
+    //     loaded: false
+    //   });
+    // }
   },
 
   onChange: function(dataObj) {
@@ -27,6 +36,17 @@ module.exports = React.createClass({
       subConnections: dataObj.connections,
       loaded: true
     });
+  },
+
+  onConnectionLoad: function(dataObj) {
+    if (this.state.selectedId !== dataObj.connection.meetupId) {
+
+      Actions.watchConnections(dataObj.connection.meetupId);
+      this.setState({
+        selectedId: dataObj.connection.meetupId,
+        loaded: true
+      });
+    }
   },
 
   _containsChildConnection: function(childConnectionId) {
@@ -46,30 +66,41 @@ module.exports = React.createClass({
     var meetupId = this.props.meetupId;
 
     return {
-      selected: (meetupId && meetupId == this.props.meetup.id),
+      selectedId: meetupId,
       subConnections: this.data.connections,
       loaded: false
     };
   },
 
   componentWillReceiveProps: function(nextProps) {
-    var meetupId = nextProps.meetupId, // From the params
-        childConnectionId = nextProps.connectionId,
-        isSelected = (meetupId && meetupId === this.props.meetup.id)
-                  || (childConnectionId && this.state.selected);
 
-    this.setState({
-      selected: isSelected
-    });
+    console.log('componentWillReceiveProps');
+
+    // var meetupId = nextProps.meetupId, // From the params
+    //     childConnectionId = nextProps.connectionId,
+    //     isSelected = (meetupId && meetupId === this.props.meetup.id)
+    //               || (this.props.meetupId && childConnectionId);
+
+    //if (isSelected) {
+    if (nextProps.meetupId || (this.props.meetupId && nextProps.connectionId)) {
+      this.setState({
+        selectedId: nextProps.meetupId || this.props.meetupId,
+        loaded: (nextProps.connectionId || this.props.meetupId === nextProps.meetupId) ? true : false
+      });
+    }
+    //}
   },
 
   render: function() {
 
+    console.log(this.props.meetup.name + ": selected = " + this.state.selected);
+
     var subConnectionList,
         subDisplay,
-        meetupClassname = classnames('meetup', this.state.selected ? 'selected' : null);
+        isSelected = (this.props.meetup.id == this.state.selectedId)
+        meetupClassname = classnames('meetup', isSelected ? 'selected' : null);
 
-    if (this.state.loaded && this.state.selected) {
+    if (this.state.loaded && isSelected) {
       subConnectionList = this.state.subConnections.map(function(connection) {
         return (
           <SubConnection connection={connection} key={connection.id} />
@@ -83,7 +114,7 @@ module.exports = React.createClass({
           {subConnectionList}
         </ul>
       );
-    } else if (this.state.selected) {
+    } else if (isSelected) {
       subDisplay = (
         <Spinner text="Loading Connections..." />
       );

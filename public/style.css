@@ -7,16 +7,19 @@
   overflow: hidden; }
   .detail-connection .company-info .image {
     float: left; }
+  .detail-connection .company-info .company-info-attribute {
+    margin-left: 90px;
+    margin-bottom: 0; }
   .detail-connection .company-info .position {
     font-size: 2rem;
-    margin-left: 90px;
-    margin-top: 10px;
+    margin-top: 0;
     margin-bottom: 0; }
   .detail-connection .company-info .company {
     font-size: 1.7rem;
-    margin-left: 90px;
     color: #616668; }
-  .detail-connection .company-info.no-logo .position, .detail-connection .company-info.no-logo .company {
+  .detail-connection .company-info .location {
+    margin-bottom: 15px; }
+  .detail-connection .company-info.no-logo .company-info-attribute {
     margin-left: 0; }
 
 
@@ -253,7 +256,7 @@
     opacity: 1; }
   .meetup-list-content .meetup .subconnection-list {
     list-style-type: none;
-    margin-top: 0.8rem; }
+    margin: 0.8rem 0; }
     .meetup-list-content .meetup .subconnection-list .list-header {
       text-transform: uppercase;
       color: #a8a8a8;
@@ -314,11 +317,14 @@
         position: absolute;
         background-color: #fff;
         margin-top: -15px;
-        width: 273px;
-        border: 1px solid #e4e2e2;
-        border-top: none; }
+        width: 271px;
+        border: 1px solid #33c3f0;
+        border-top: none;
+        border-radius: 0 0 4px 4px; }
         .modal-background .modal-content .modal-form .day-picker.collapsed {
           display: none; }
+        .modal-background .modal-content .modal-form .day-picker .DayPicker-Day:hover {
+          color: #33c3f0; }
     .modal-background .modal-content i.fa-times {
       float: right;
       position: relative;
@@ -368,6 +374,8 @@ a {
 
 i.fa {
   margin-right: 3px; }
+  i.fa.fa-2x {
+    vertical-align: middle; }
   i.fa.fa-envelope {
     color: #bbb; }
   i.fa.fa-linkedin-square {
@@ -395,3 +403,6 @@ i.fa-circle.divider {
 
 .centered {
   text-align: center; }
+
+.info {
+  color: #a8a8a8; }

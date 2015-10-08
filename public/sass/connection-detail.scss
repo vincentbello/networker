@@ -18,21 +18,28 @@
       float: left;
     }
 
+    .company-info-attribute {
+      margin-left: 90px;
+      margin-bottom: 0;
+    }
+
     .position {
       font-size: 2rem;
-      margin-left: 90px;
-      margin-top: 10px;
+      margin-top: 0;
       margin-bottom: 0;
     }
 
     .company {
       font-size: 1.7rem;
-      margin-left: 90px;
       color: $gray-5;
     }
 
+    .location {
+      margin-bottom: 15px;
+    }
+
     &.no-logo {
-      .position, .company {
+      .company-info-attribute {
         margin-left: 0;
       }
     }

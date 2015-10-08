@@ -23,7 +23,7 @@ module.exports = React.createClass({
 
     var newMeetup = {
       name: this.state.name.trim(),
-      date: this.state.date,
+      date: this.state.date.toString(),
       address: this.state.address,
       website: this.state.website,
       notes: this.state.notes
@@ -177,7 +177,6 @@ module.exports = React.createClass({
         <textarea
           className="add-form-input"
           id="add-meetup-notes"
-          rows="4"
           valueLink={this.linkState('notes')}
         />
         <div className="centered">

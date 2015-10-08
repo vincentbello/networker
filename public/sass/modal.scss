@@ -54,12 +54,17 @@
         position: absolute;
         background-color: $white;
         margin-top: -15px;
-        width: 273px;
-        border: 1px solid $gray-2;
+        width: 271px;
+        border: 1px solid #33c3f0;
         border-top: none;
+        border-radius: 0 0 4px 4px;
 
         &.collapsed {
           display: none;
+        }
+
+        .DayPicker-Day:hover {
+          color: #33c3f0;
         }
       }
     }

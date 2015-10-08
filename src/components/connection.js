@@ -62,7 +62,7 @@ module.exports = React.createClass({
     return Object.keys(contact).map(function(contactType) {
       if (contact[contactType] && contact[contactType].length) {
         return (
-          <i className={'fa fa-' + Constants.contactAttribs[contactType].iconClass}
+          <i key={contactType} className={'fa fa-' + Constants.contactAttribs[contactType].iconClass}
               title={Constants.contactAttribs[contactType].name}
           ></i>
         );

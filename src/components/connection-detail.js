@@ -4,6 +4,7 @@ var React = require('react'),
     Navigation = require('react-router').Navigation,
     ConnectionDetailStore = require('../stores/connection-detail-store'),
     Constants = require('../utils/constants'),
+    marked = require('marked'),
     classnames = require('classnames');
 
 var Image = require('./image'),
@@ -116,15 +117,23 @@ module.exports = React.createClass({
           <div className="detail-content">
             <div className={companyClassname}>
               {logo}
-              <p className="position">
+              <p className="company-info-attribute position">
                 {connection.company.position}
               </p>
-              <p className="company">
+              <p className="company-info-attribute company">
                 {connection.company.name}
               </p>
+              <p className="company-info-attribute location">
+                <i className="fa fa-map-pin"></i> {connection.company.location}
+              </p>
+            </div>
+            <div>
+              <i className="fa fa-graduation-cap"></i> {connection.education}
             </div>
             <h5>Contact Information</h5>
             {this._renderContactInfo()}
+            <h5>Impressions</h5>
+            {this._renderImpressions()}
           </div>
         </div>
 
@@ -168,11 +177,33 @@ module.exports = React.createClass({
         }
 
         return (
-          <p><i className={'fa fa-fw fa-lg fa-' + contactAttrib.iconClass}></i> {contactAttrib.name}: {inner}</p>
+          <p><i className={'fa fa-fw fa-2x fa-' + contactAttrib.iconClass}></i> {contactAttrib.name}: {inner}</p>
         );
       }
 
     });
+  },
+
+  _renderImpressions: function() {
+
+    var impressionsElem;
+
+    if (this.state.connection.impressions) {
+      var html = { __html: marked(this.state.connection.impressions, { sanitize: true }) };
+      return (
+        <div key="impressionsHtml" dangerouslySetInnerHTML={html} />
+      );
+    }
+
+    // When React removes div.info, it sets (replaces) the _html before the queued removal happens. When the queue is processed, the element is missing.
+    // We would have to queue the dangerouslySetInnerHTML as well.
+    // Workaround: we set different key props to the divs, so that React creates a new element instead of reusing the existing one.
+
+    return (
+      <div className="info" key="info">
+        What did you think about {this.state.connection.name}? Record your impressions <a onClick={this._editConnection}>here</a>.
+      </div>
+    );
   },
 
   _renderRemove: function() {

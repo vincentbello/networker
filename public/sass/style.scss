@@ -49,6 +49,10 @@ a {
 i.fa {
   margin-right: 3px;
 
+  &.fa-2x {
+    vertical-align: middle;
+  }
+
   &.fa-envelope {
     color: $gray-3;
   }
@@ -93,4 +97,8 @@ i.fa-circle.divider {
 
 .centered {
   text-align: center;
+}
+
+.info {
+  color: $gray-4;
 }

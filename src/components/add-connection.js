@@ -22,11 +22,12 @@ module.exports = React.createClass({
     var newConnection = {
       name: this.state.name.trim(),
       photo: this.state.photo,
-      company: this.state.company,
-      position: this.state.position,
+      education: this.state.education,
+      impressions: this.state.impressions,
       company: {
         name: this.state.company,
         position: this.state.position,
+        location: this.state.location,
         logo: this.state.logo
       },
       contact: {
@@ -76,8 +77,11 @@ module.exports = React.createClass({
         saved: false,
         name: connection.name                 || '',
         photo: connection.photo               || '',
+        education: connection.education       || '',
+        impressions: connection.impressions   || '',
         company: connection.company.name      || '',
         position: connection.company.position || '',
+        location: connection.company.location || '',
         logo: connection.company.logo         || '',
         facebook: connection.contact.facebook || '',
         linkedin: connection.contact.linkedin || '',
@@ -92,8 +96,11 @@ module.exports = React.createClass({
       saved: false,
       name: '',
       photo: '',
+      education: '',
+      impressions: '',
       company: '',
       position: '',
+      location: '',
       logo: 'public/img/logo_placeholder.png',
       facebook: '',
       linkedin: '',
@@ -136,6 +143,7 @@ module.exports = React.createClass({
               type="text"
               className="add-form-input"
               id="add-connection-name"
+              autoFocus={true}
               valueLink={this.linkState('name')}
             />
           </div>
@@ -157,7 +165,7 @@ module.exports = React.createClass({
           </div>
         </div>
         <div className="row">
-          <div className="twelve columns">
+          <div className="six columns">
             <label htmlFor="add-connection-position">Position</label>
             <input
               type="text"
@@ -166,7 +174,28 @@ module.exports = React.createClass({
               valueLink={this.linkState('position')}
             />
           </div>
+          <div className="six columns">
+            <label htmlFor="add-connection-location">Location</label>
+            <input
+              type="text"
+              className="add-form-input"
+              id="add-connection-location"
+              valueLink={this.linkState('location')}
+            />
+          </div>
         </div>
+        <label htmlFor="add-connection-impressions">Impressions</label>
+        <textarea
+          className="add-form-input"
+          id="add-connection-impressions"
+          valueLink={this.linkState('impressions')}
+        />
+        <label htmlFor="add-connection-education">Education</label>
+        <textarea
+          className="add-form-input"
+          id="add-connection-education"
+          valueLink={this.linkState('education')}
+        />
         <h4>Contact Information</h4>
         <div className="row">
           <div className="six columns">
