@@ -191,7 +191,8 @@ module.exports = React.createClass({
           valueLink={this.linkState('impressions')}
         />
         <label htmlFor="add-connection-education">Education</label>
-        <textarea
+        <input
+          type="text"
           className="add-form-input"
           id="add-connection-education"
           valueLink={this.linkState('education')}
@@ -199,7 +200,7 @@ module.exports = React.createClass({
         <h4>Contact Information</h4>
         <div className="row">
           <div className="six columns">
-            <label htmlFor="add-connection-facebook">Facebook</label>
+            <label htmlFor="add-connection-facebook"><i className="fa fa-facebook-square"></i> Facebook</label>
             <input
               type="text"
               className="add-form-input"
@@ -208,7 +209,7 @@ module.exports = React.createClass({
             />
           </div>
           <div className="six columns">
-            <label htmlFor="add-connection-linkedin">LinkedIn</label>
+            <label htmlFor="add-connection-linkedin"><i className="fa fa-linkedin-square"></i> LinkedIn</label>
             <input
               type="text"
               className="add-form-input"
@@ -219,17 +220,18 @@ module.exports = React.createClass({
         </div>
         <div className="row">
           <div className="six columns">
-            <label htmlFor="add-connection-twitter">Twitter</label>
+            <label htmlFor="add-connection-twitter"><i className="fa fa-twitter-square"></i> Twitter</label>
+            <i className="fa fa-at icon-input-left"></i>
             <input
               type="text"
-              className="add-form-input"
+              className="add-form-input indent-left"
               id="add-connection-twitter"
               valueLink={this.linkState('twitter')}
               onBlur={ this._findPhoto }
             />
           </div>
           <div className="six columns">
-            <label htmlFor="add-connection-phone">Phone</label>
+            <label htmlFor="add-connection-phone"><i className="fa fa-phone-square"></i> Phone</label>
             <input
               type="text"
               className="add-form-input"
@@ -240,7 +242,7 @@ module.exports = React.createClass({
         </div>
         <div className="row">
           <div className="six columns">
-            <label htmlFor="add-connection-email">Email</label>
+            <label htmlFor="add-connection-email"><i className="fa fa-envelope"></i> Email</label>
             <input
               type="text"
               className="add-form-input"
@@ -249,7 +251,7 @@ module.exports = React.createClass({
             />
           </div>
           <div className="six columns">
-            <label htmlFor="add-connection-skype">Skype</label>
+            <label htmlFor="add-connection-skype"><i className="fa fa-skype"></i> Skype</label>
             <input
               type="text"
               className="add-form-input"

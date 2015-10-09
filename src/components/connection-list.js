@@ -42,7 +42,7 @@ module.exports = React.createClass({
       <div className="connections-list">
         <h4>Connections</h4>
         <a onClick={this._addConnection}>
-          <i className="fa fa-plus"></i> Add Connection
+          <i className="fa fa-plus-circle"></i> Add Connection
         </a>
         {this.state.loaded ? this._renderConnections() : ''}
       </div>

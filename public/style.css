@@ -218,11 +218,11 @@
     font-size: 1.7rem;
     text-transform: uppercase;
     border-bottom: 1px solid #e4e2e2; }
-    .meetup-list .meetup-list-header .fa-plus {
+    .meetup-list .meetup-list-header .fa-plus-circle {
       float: left;
       position: relative;
       left: 10px;
-      top: 5px; }
+      top: 4px; }
     .meetup-list .meetup-list-header .fa-angle-down {
       float: right;
       position: relative;
@@ -262,8 +262,12 @@
       color: #a8a8a8;
       font-size: 1.4rem;
       font-weight: 600; }
-      .meetup-list-content .meetup .subconnection-list .list-header i.fa-angle-down {
-        font-weight: 600; }
+      .meetup-list-content .meetup .subconnection-list .list-header i.fa-plus-circle {
+        float: right;
+        margin-right: -10px;
+        color: #a8a8a8; }
+        .meetup-list-content .meetup .subconnection-list .list-header i.fa-plus-circle:hover {
+          color: #0FA0CE; }
     .meetup-list-content .meetup .subconnection-list .subconnection {
       margin: 0 0 0.8rem 1rem; }
       .meetup-list-content .meetup .subconnection-list .subconnection i.fa-angle-right {
@@ -275,8 +279,8 @@
         font-weight: 600; }
         .meetup-list-content .meetup .subconnection-list .subconnection .selected i.fa-angle-right {
           opacity: 1; }
-  .meetup-list-content .meetup:hover {
-    background-color: #f7f7fa; }
+  .meetup-list-content .meetup:hover .meetup-list-name {
+    color: #0FA0CE; }
 
 .modal-background {
   overflow: auto;
@@ -304,11 +308,16 @@
         color: #bbb; }
     .modal-background .modal-content .modal-form {
       padding: 15px; }
+      .modal-background .modal-content .modal-form .icon-input-left {
+        position: absolute;
+        margin: 12px 0 0 6px; }
       .modal-background .modal-content .modal-form .add-form-input {
         width: 100%; }
         .modal-background .modal-content .modal-form .add-form-input.flat-bottom {
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0; }
+        .modal-background .modal-content .modal-form .add-form-input.indent-left {
+          padding-left: 20px; }
       .modal-background .modal-content .modal-form i.fa-calendar {
         float: right;
         position: absolute;

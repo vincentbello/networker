@@ -33,8 +33,9 @@ module.exports = React.createClass({
     if (this.props.meetup) {
       Actions.editMeetup(this.props.meetup.id, newMeetup);
     } else {
+      var me = this;
       Actions.addMeetup(newMeetup, function(meetupId) {
-        this.transitionTo('meetups/' + meetupId);
+        me.transitionTo('meetups/' + meetupId);
       });
     }
   },

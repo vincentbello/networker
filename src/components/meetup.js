@@ -19,18 +19,6 @@ module.exports = React.createClass({
 
 // NO NEED TO WATCH, JUST LISTEN
 
-  _handleSelect: function(event) {
-
-    console.log('_handleSelect');
-
-    // if (this.state.selected) {
-    //   this.setState({
-    //     selected: false,
-    //     loaded: false
-    //   });
-    // }
-  },
-
   onChange: function(dataObj) {
     this.setState({
       subConnections: dataObj.connections,
@@ -49,15 +37,8 @@ module.exports = React.createClass({
     }
   },
 
-  _containsChildConnection: function(childConnectionId) {
-
-    var subConnections = this.state.subConnections;
-    for (var i = 0, len = this.state.subConnections.length; i < len; i++) {
-      if (subConnections[i].id === childConnectionId) {
-        return true;
-      }
-    }
-    return false;
+  _addConnection: function(e) {
+    Actions.showModal('addConnection', { meetupId: this.props.meetupId });
   },
 
   getInitialState: function() {
@@ -109,7 +90,10 @@ module.exports = React.createClass({
       subDisplay = (
         <ul className="subconnection-list">
           <li className="list-header">
-            Connections <i className="fa fa-angle-down"></i>
+            Connections ({this.state.subConnections.length})
+            <a onClick={this._addConnection}>
+              <i className="fa fa-plus-circle"></i>
+            </a>
           </li>
           {subConnectionList}
         </ul>

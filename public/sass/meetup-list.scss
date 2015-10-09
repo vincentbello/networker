@@ -15,11 +15,11 @@
     text-transform: uppercase;
     border-bottom: 1px solid $gray-2;
 
-    .fa-plus {
+    .fa-plus-circle {
       float: left;
       position: relative;
       left: 10px;
-      top: 5px;
+      top: 4px;
     }
 
     .fa-angle-down {
@@ -84,8 +84,14 @@
         font-size: 1.4rem;
         font-weight: 600;
 
-        i.fa-angle-down {
-          font-weight: 600;
+        i.fa-plus-circle {
+          float: right;
+          margin-right: -10px;
+          color: $gray-4;
+
+          &:hover {
+            color: $link-color-hover;
+          }
         }
       }
 
@@ -110,7 +116,9 @@
     }
 
     &:hover {
-      background-color: $gray-1;
+      .meetup-list-name {
+        color: $link-color-hover;
+      }
     }
   }
 }

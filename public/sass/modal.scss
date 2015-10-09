@@ -34,6 +34,11 @@
     .modal-form {
       padding: 15px;
 
+      .icon-input-left {
+        position: absolute;
+        margin: 12px 0 0 6px;
+      }
+
       .add-form-input {
 
         width: 100%;
@@ -41,6 +46,10 @@
         &.flat-bottom {
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0;
+        }
+
+        &.indent-left {
+          padding-left: 20px;
         }
       }
 
