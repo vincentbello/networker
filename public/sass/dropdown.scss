@@ -1,0 +1,34 @@
+@import 'imports';
+
+.dropdown-wrapper {
+  position: relative;
+  float: right;
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    margin: 0;
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid $gray-2;
+    list-style-type: none;
+    z-index: 1000;
+    font-size: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0;
+    padding: 5px 10px;
+
+    &.selected {
+      background-color: $link-color-hover;
+      color: $white;
+      cursor: pointer;
+    }
+  }
+
+
+
+}

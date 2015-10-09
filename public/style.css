@@ -139,6 +139,29 @@
   .detail .detail-content {
     padding: 15px 10px 50px; }
 
+.dropdown-wrapper {
+  position: relative;
+  float: right; }
+  .dropdown-wrapper .dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    margin: 0;
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid #e4e2e2;
+    list-style-type: none;
+    z-index: 1000;
+    font-size: 1.5rem; }
+  .dropdown-wrapper li {
+    margin-bottom: 0;
+    padding: 5px 10px; }
+    .dropdown-wrapper li.selected {
+      background-color: #0FA0CE;
+      color: #fff;
+      cursor: pointer; }
+
 .header {
   height: 50px;
   width: 100%;
@@ -216,14 +239,15 @@
     margin: 0;
     text-align: center;
     font-size: 1.7rem;
-    text-transform: uppercase;
     border-bottom: 1px solid #e4e2e2; }
+    .meetup-list .meetup-list-header .meetup-list-title {
+      text-transform: uppercase; }
     .meetup-list .meetup-list-header .fa-plus-circle {
       float: left;
       position: relative;
       left: 10px;
       top: 4px; }
-    .meetup-list .meetup-list-header .fa-angle-down {
+    .meetup-list .meetup-list-header .fa-caret-down {
       float: right;
       position: relative;
       right: 5px;

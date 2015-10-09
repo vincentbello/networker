@@ -6,6 +6,7 @@ var React = require('react'),
     ReactRouter = require('react-router'),
     Link = ReactRouter.Link,
     Meetup = require('./meetup'),
+    SortDropdown = require('./sort-dropdown'),
     Spinner = require('./spinner');
 
 module.exports = React.createClass({
@@ -18,9 +19,17 @@ module.exports = React.createClass({
     Actions.showModal('addMeetup', {});
   },
 
+  _toggleSort: function(e) {
+    this.setState({
+      sorting: !this.state.sorting
+    });
+  },
+
   onChange: function(dataObj) {
     this.setState({
       meetups: dataObj.meetups,
+      sort: dataObj.sort,
+      sorting: false,
       loaded: true
     });
   },
@@ -30,6 +39,8 @@ module.exports = React.createClass({
 
     return {
       meetups: this.data.meetups,
+      sort: this.data.sort,
+      sorting: false,
       loaded: false
     };
   },
@@ -45,8 +56,15 @@ module.exports = React.createClass({
           <a onClick={ this._addMeetup }>
             <i className="fa fa-plus-circle" title="Add a Meetup"></i>
           </a>
-          <i className="fa fa-calendar"></i>  Meetups
-          <i className="fa fa-angle-down"></i>
+          <span className="meetup-list-title">
+            <i className="fa fa-calendar"></i>  Meetups
+          </span>
+          <span className="dropdown-wrapper">
+            <a onClick={this._toggleSort}>
+              <i className="fa fa-caret-down"></i>
+            </a>
+            {this.state.sorting ? this._renderSortDropdown() : ''}
+          </span>
         </h4>
         <div className="meetup-list-content">
           {this.state.loaded ? this._renderMeetups() : <Spinner />}
@@ -70,5 +88,13 @@ module.exports = React.createClass({
         <Meetup meetup={meetup} key={meetup.id} {...params} />
       );
     });
+  },
+
+  _renderSortDropdown: function() {
+    return (
+      <SortDropdown currentSort={this.state.sort} />
+    );
   }
+
+
 });

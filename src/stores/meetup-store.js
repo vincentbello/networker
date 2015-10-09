@@ -10,7 +10,7 @@ var data = {
   meetups: [],
   sort: {
     asc: true,
-    by: 'date'
+    by: 'name'
   }
 };
 
@@ -19,7 +19,9 @@ module.exports = Reflux.createStore({
   listenables: [Actions],
 
   watchMeetups: function() {
-    meetupsRef.on('value', this._updateMeetups);
+    meetupsRef
+      .orderByChild(data.sort.by)
+      .on('value', this._updateMeetups);
   },
 
   _updateMeetups: function(meetupsObj) {

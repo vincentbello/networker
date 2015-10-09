@@ -15,6 +15,7 @@ module.exports = Reflux.createActions([
 
   // connections
   'watchConnections',
+  'stopWatchConnections',
   'watchConnection',
   'addConnection',
   'editConnection',
