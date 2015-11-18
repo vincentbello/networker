@@ -128,7 +128,7 @@ module.exports = React.createClass({
   _renderForm: function() {
 
     var photoPath = this.state.photo.length ? this.state.photo : Constants.PHOTO_PLACEHOLDER,
-        logoPath = this.state.logo.length ? this.state.logo : Constants.LOGO_PLACEHOLDER;
+        logoPath = this.state.logo;
 
     return (
       <form onSubmit={this._handleSubmit} className="add-form modal-form">
@@ -151,7 +151,7 @@ module.exports = React.createClass({
         <div className="row">
           <div className="two columns">
 
-            <Image src={logoPath} />
+            <Image src={logoPath} placeholder={Constants.LOGO_PLACEHOLDER} />
           </div>
           <div className="ten columns">
             <label htmlFor="add-connection-company">Company</label>

@@ -7,7 +7,6 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    console.log('rendering modal');
     return (
       <div className="modal-background" onClick={this.props.dismissModal}>
         <div className="modal-content" onClick={this._preventDismiss}>

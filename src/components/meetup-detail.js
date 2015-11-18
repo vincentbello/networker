@@ -107,7 +107,7 @@ module.exports = React.createClass({
           <div className="detail-content">
             <div className="detail-meetup-event-details">
               <p>
-                <i className="fa fa-calendar-check-o"></i> {moment(meetup.date).format('MMMM D, YYYY')}
+                <i className="fa fa-calendar-check-o"></i> {moment(new Date(meetup.date)).format('MMMM D, YYYY')}
                 <i className="fa fa-map-pin"></i> {meetup.address}
                 <i className="fa fa-external-link"></i> <a href={meetup.website} target="_blank">Event Website</a>
               </p>

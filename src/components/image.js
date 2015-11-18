@@ -4,34 +4,42 @@ var React = require('react'),
 module.exports = React.createClass({
 
   _onLoad: function(e) {
-    console.log('loaded; state is ' + this.state.loaded);
     this.setState({
       loaded: true
     });
   },
 
+  _onError: function(e) {
+    this.setState({
+      src: this.props.placeholder || ''
+    });
+  },
+
   getInitialState: function() {
     return {
-      loaded: false
+      loaded: false,
+      src: this.props.src
     };
   },
 
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.src !== this.props.src) {
       this.setState({
-        loaded: false
+        loaded: false,
+        src: nextProps.src
       });
     }
   },
 
   render: function() {
     var className = classnames('image', this.state.loaded ? 'image-loaded' : null);
-
+    console.log('image source: ' + this.state.src);
     return (
       <img
         className={className}
         onLoad={this._onLoad}
-        src={this.props.src} />
+        onError={this._onError}
+        src={this.state.src} />
     );
   }
 });

@@ -13,7 +13,7 @@ module.exports = React.createClass({
         <ul className="nav-list">
           <li><a href="#">MEETUPS</a></li>
           <li><a href="#">CONNECTIONS</a></li>
-          <li><a href="#">VINCENT</a></li>
+          <li><a href="#">{this.props.user.isLoggedIn ? this.props.user.firstName : 'Log in'}</a></li>
         </ul>
       </div>
     );

@@ -1,8 +1,9 @@
-var rootUrl = 'https://logo.clearbit.com/';
+var Helpers = require('./helpers'),
+    rootUrl = 'https://logo.clearbit.com/';
 
 module.exports = {
 
   imageUrl: function(companyName) {
-    return rootUrl + 'www.' + companyName.toLowerCase().replace(/ /g,'') + '.com';
+    return rootUrl + 'www.' + Helpers.removeAccents(companyName.toLowerCase().replace(/ /g,'')) + '.com';
   }
-}
+};

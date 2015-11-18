@@ -97,7 +97,7 @@ module.exports = React.createClass({
 
       var connection = this.state.connection,
           photo = connection.photo.length ? (<Image src={connection.photo} />) : undefined,
-          logo = connection.company.logo.length ? (<Image src={connection.company.logo} />) : undefined,
+          logo = connection.company.logo.length ? (<Image src={connection.company.logo} placeholder={Constants.LOGO_PLACEHOLDER} />) : undefined,
           companyClassname = classnames('company-info', connection.company.logo.length ? null : 'no-logo');
 
       inner = (

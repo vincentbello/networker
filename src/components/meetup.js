@@ -55,8 +55,6 @@ module.exports = React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
 
-    console.log('componentWillReceiveProps');
-
     // var meetupId = nextProps.meetupId, // From the params
     //     childConnectionId = nextProps.connectionId,
     //     isSelected = (meetupId && meetupId === this.props.meetup.id)
@@ -73,8 +71,6 @@ module.exports = React.createClass({
   },
 
   render: function() {
-
-    console.log(this.props.meetup.name + ": selected = " + this.state.selected);
 
     var subConnectionList,
         subDisplay,
